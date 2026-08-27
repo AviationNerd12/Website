@@ -83,7 +83,7 @@
     margin-left: 8px;
   }
 
-  nav ul { list-style: none; display: flex; gap: 24px; }
+  nav ul { list-style: none; display: flex; gap: 24px; align-items: center; }
   nav a {
     text-decoration: none;
     color: var(--text-muted);
@@ -92,6 +92,19 @@
     transition: color 0.15s ease;
   }
   nav a:hover { color: var(--accent); }
+  nav a.resume-btn {
+    background: var(--tag-bg);
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: var(--text-main);
+    font-weight: 600;
+    border: 1px solid var(--border);
+  }
+  nav a.resume-btn:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
 
   /* Hero Section */
   .hero {
@@ -120,6 +133,7 @@
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .hero-links a {
@@ -282,18 +296,20 @@
     border-radius: 6px;
     overflow: hidden;
     background: var(--bg-subtle);
+    position: relative;
+    cursor: zoom-in;
   }
 
   .media-thumb img {
     width: 100%;
-    height: 120px;
+    height: 125px;
     object-fit: cover;
     display: block;
     background-color: #ffffff;
     transition: transform 0.2s ease;
   }
 
-  .media-thumb img:hover { transform: scale(1.03); }
+  .media-thumb:hover img { transform: scale(1.04); }
 
   .media-thumb figcaption {
     font-size: 11px;
@@ -305,6 +321,54 @@
     border-top: 1px solid var(--border);
     line-height: 1.3;
   }
+
+  /* Lightbox Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .modal.active { display: flex; }
+
+  .modal-content {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    background: #ffffff;
+  }
+
+  .modal-caption {
+    color: #f8fafc;
+    font-family: var(--mono);
+    font-size: 13px;
+    margin-top: 14px;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .modal-close:hover { color: #94a3b8; }
 
   /* Labs Grid */
   .labs-grid {
@@ -383,6 +447,7 @@
     list-style: none;
     font-size: 14px;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .contact-links a {
@@ -417,6 +482,7 @@
           <li><a href="#projects">Projects</a></li>
           <li><a href="#labs">Lab Work</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="images/resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-btn">Resume (PDF)</a></li>
         </ul>
       </nav>
     </div>
@@ -426,10 +492,11 @@
   <div class="hero" id="about">
     <div class="wrap">
       <h1>Electrical &amp; Computer Engineering</h1>
-      <p>B.S. Electrical &amp; Computer Engineering student at the <b>University of Washington</b> (Expected March 2028), focusing on RF circuit design, power electronics, analog signal conditioning, and scientific computation. Experienced in electromagnetic simulation, SPICE modeling, and benchtop hardware testing.</p>
+      <p>B.S. Electrical &amp; Computer Engineering student at the <b>University of Washington</b> (Expected March 2028), focusing on RF circuit design, power electronics, analog signal conditioning, and scientific computation[cite: 2]. Experienced in electromagnetic simulation, SPICE modeling, and benchtop hardware testing[cite: 1, 2].</p>
       <div class="hero-links">
         <a href="#projects">View Projects &rarr;</a>
         <a href="#labs">Lab &amp; Measurement Reports &rarr;</a>
+        <a href="images/resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume (PDF) &rarr;</a>
       </div>
 
       <!-- Technical Competencies -->
@@ -437,41 +504,41 @@
         <div class="skill-group">
           <h3>RF &amp; Electromagnetics</h3>
           <ul>
-            <li>Microstrip Hairpin Filters</li>
-            <li>Coupled Line Synthesis</li>
-            <li>$J$-Inverter Transformations</li>
-            <li>Ansys HFSS / AEDT</li>
-            <li>Vector Network Analyzers (VNA)</li>
+            <li>Microstrip Hairpin Filters[cite: 1]</li>
+            <li>Coupled Line Synthesis[cite: 1]</li>
+            <li>$J$-Inverter Transformations[cite: 1]</li>
+            <li>Ansys HFSS / AEDT[cite: 2]</li>
+            <li>Vector Network Analyzers (VNA)[cite: 2]</li>
           </ul>
         </div>
         <div class="skill-group">
           <h3>Analog &amp; Power</h3>
           <ul>
-            <li>Step-Up Boost Converters</li>
-            <li>Linear &amp; Zener Regulation</li>
-            <li>Full-Wave AC-DC Rectification</li>
-            <li>Active Op-Amp Filter Design</li>
-            <li>Mixed-Signal PCB Layout</li>
+            <li>Step-Up Boost Converters[cite: 1, 7]</li>
+            <li>Linear &amp; Zener Regulation[cite: 1, 2]</li>
+            <li>Full-Wave AC-DC Rectification[cite: 1, 7]</li>
+            <li>Active Op-Amp Filter Design[cite: 1, 5]</li>
+            <li>Mixed-Signal PCB Layout[cite: 2]</li>
           </ul>
         </div>
         <div class="skill-group">
           <h3>Software &amp; Tools</h3>
           <ul>
-            <li>Fortran 90/95</li>
-            <li>Python (NumPy / SciPy)</li>
-            <li>LTspice (.tran / .ac / .dc)</li>
-            <li>SMath Studio</li>
-            <li>Git &amp; GitHub Version Control</li>
+            <li>Fortran 90/95[cite: 2]</li>
+            <li>Python (NumPy / SciPy)[cite: 1, 2]</li>
+            <li>LTspice (.tran / .ac / .dc)[cite: 1]</li>
+            <li>SMath Studio[cite: 1, 2]</li>
+            <li>Git &amp; GitHub Version Control[cite: 2]</li>
           </ul>
         </div>
         <div class="skill-group">
           <h3>Instrumentation</h3>
           <ul>
-            <li>Digital Storage Oscilloscopes</li>
-            <li>Arbitrary Function Generators</li>
-            <li>X-Y Mode VTC Characterization</li>
-            <li>6½-Digit Bench DMMs</li>
-            <li>SMD / Through-Hole Soldering</li>
+            <li>Digital Storage Oscilloscopes[cite: 1, 2]</li>
+            <li>Arbitrary Function Generators[cite: 1, 2]</li>
+            <li>X-Y Mode VTC Characterization[cite: 1]</li>
+            <li>6½-Digit Bench DMMs[cite: 1, 2]</li>
+            <li>SMD / Through-Hole Soldering[cite: 2]</li>
           </ul>
         </div>
       </div>
@@ -495,10 +562,10 @@
             <span class="status-tag ongoing">Ongoing</span>
           </div>
           <p class="project-desc">
-            Synthesized and simulated a 4th-order Chebyshev bandpass filter centered at 1090 MHz with a 45 MHz passband ($FBW = 4.13\%$) for ADS-B signal reception. Derived prototype $g_i$ values, admittance inverters ($J_{01}/Y_0 = 0.2419$, $J_{12}/Y_0 = 0.0448$), and even/odd mode impedances ($Z_{0e}, Z_{0o}$). Folded $\lambda/2$ resonators into U-shaped hairpins to cut board area by $>50\%$ and implemented direct $50\ \Omega$ tapped-line feeds to achieve return loss $S_{11} < -15\text{ dB}$.
+            Synthesized and simulated a 4th-order Chebyshev bandpass filter centered at 1090 MHz with a 45 MHz passband ($FBW = 4.13\%$) for ADS-B signal reception[cite: 1]. Derived prototype $g_i$ values, admittance inverters ($J_{01}/Y_0 = 0.2419$, $J_{12}/Y_0 = 0.0448$), and even/odd mode impedances ($Z_{0e}, Z_{0o}$)[cite: 1]. Folded $\lambda/2$ resonators into U-shaped hairpins to cut board area by $>50\%$ and implemented direct $50\ \Omega$ tapped-line feeds to achieve return loss $S_{11} < -15\text{ dB}$[cite: 1].
           </p>
           <div class="project-specs">
-            <b>Specifications:</b> FR-4 Substrate ($\epsilon_r = 4.4$, $H = 1.524\text{ mm}$, $\tan\delta = 0.015$) | Stopband Rejection $\ge 30\text{ dB}$ at 1170 MHz | Trace Gap $S \ge 8.38\text{ mil}$
+            <b>Specifications:</b> FR-4 Substrate ($\epsilon_r = 4.4$, $H = 1.524\text{ mm}$, $\tan\delta = 0.015$) | Stopband Rejection $\ge 30\text{ dB}$ at 1170 MHz | Trace Gap $S \ge 8.38\text{ mil}$[cite: 1]
           </div>
           <div class="tags">
             <span>Ansys HFSS</span>
@@ -509,7 +576,7 @@
           </div>
         </div>
 
-        <!-- Project 2: AC-DC Boost Converter (With Image Media) -->
+        <!-- Project 2: AC-DC Boost Converter (With Image Media & Modal) -->
         <div class="project-card">
           <div class="project-layout">
             <div>
@@ -534,18 +601,18 @@
             <!-- Media Column -->
             <div class="media-gallery">
               <figure class="media-thumb">
-                <img src="images/boost-schematic.png" alt="Boost Converter Complete Schematic">
+                <img src="images/boost-schematic.png" alt="Complete AC-DC Boost Converter Circuit Schematic" loading="lazy">
                 <figcaption>Circuit Schematic[cite: 7]</figcaption>
               </figure>
               <figure class="media-thumb">
-                <img src="images/boost-scope-high.jpg" alt="Keysight DSO Output Capture 18.65V">
+                <img src="images/boost-scope-high.jpg" alt="Keysight DSO 18.65V DC Output Waveform Capture" loading="lazy">
                 <figcaption>18.65V DC Scope Trace[cite: 7]</figcaption>
               </figure>
             </div>
           </div>
         </div>
 
-        <!-- Project 3: Audio Mixer & Equalizer (With Image Media) -->
+        <!-- Project 3: Audio Mixer & Equalizer (With Image Media & Modal) -->
         <div class="project-card">
           <div class="project-layout">
             <div>
@@ -563,18 +630,18 @@
                 <span>Analog Design</span>
                 <span>Active Filters</span>
                 <span>Op-Amps</span>
-                <span>LM348N</span>[cite: 5]
+                <span>LM348N</span>
               </div>
             </div>
 
             <!-- Media Column -->
             <div class="media-gallery">
               <figure class="media-thumb">
-                <img src="images/audio-schematic.png" alt="Active Filter Circuit Schematic">
+                <img src="images/audio-schematic.png" alt="Active Variable Band-Pass / Band-Stop Filter Schematic" loading="lazy">
                 <figcaption>Active Filter Topology[cite: 5]</figcaption>
               </figure>
               <figure class="media-thumb">
-                <img src="images/audio-waveform.png" alt="Dual-Channel Oscilloscope Waveform">
+                <img src="images/audio-waveform.png" alt="Keysight DSO Dual-Channel Input vs Output Waveform" loading="lazy">
                 <figcaption>Input vs. Output Trace[cite: 5]</figcaption>
               </figure>
             </div>
@@ -608,7 +675,7 @@
             <span class="status-tag ongoing">Ongoing</span>
           </div>
           <p class="project-desc">
-            Developed compiled Fortran 90/95 routines and SMath symbolic worksheets to execute matrix transformations, Chebyshev prototype polynomial evaluations, and microstrip impedance transformations. Automated analytical solving of electrical lengths ($\lambda_g / 4$), odd/even characteristic impedances ($Z_{0e}, Z_{0o}$), and physical microstrip line dimensions ($W/H, S/H$).
+            Developed compiled Fortran 90/95 routines and SMath symbolic worksheets to execute matrix transformations, Chebyshev prototype polynomial evaluations, and microstrip impedance transformations[cite: 1]. Automated analytical solving of electrical lengths ($\lambda_g / 4$), odd/even characteristic impedances ($Z_{0e}, Z_{0o}$), and physical microstrip line dimensions ($W/H, S/H$)[cite: 1].
           </p>
           <div class="tags">
             <span>Fortran 90/95</span>
@@ -637,11 +704,11 @@
           <div class="lab-code">UW EE 331</div>
           <h3 class="lab-title">Semiconductor Physics &amp; Non-Linear Wave-Shaping</h3>
           <p>
-            Characterized forward conduction and minority-carrier reverse leakage across silicon rectifiers (1N4007), fast-switching diodes (1N4148), and Schottky diodes (1N5819) over five decades of current ($1\ \mu\text{A}$ to $10\text{ mA}$). Extracted ideality factors ($\eta$) and mapped dynamic Voltage Transfer Characteristics (VTC) in oscilloscope X-Y mode.
+            Characterized forward conduction and minority-carrier reverse leakage across silicon rectifiers (1N4007), fast-switching diodes (1N4148), and Schottky diodes (1N5819) over five decades of current ($1\ \mu\text{A}$ to $10\text{ mA}$)[cite: 1]. Extracted ideality factors ($\eta$) and mapped dynamic Voltage Transfer Characteristics (VTC) in oscilloscope X-Y mode[cite: 1].
           </p>
           <ul class="lab-details">
-            <li>Built symmetric ($\pm 0.7\text{ V}$, $\pm 1.4\text{ V}$) and asymmetric Zener overvoltage limiters.</li>
-            <li>Extracted dynamic Zener breakdown resistance ($R_z$) and forward resistance ($R_f$) in LTspice.</li>
+            <li>Built symmetric ($\pm 0.7\text{ V}$, $\pm 1.4\text{ V}$) and asymmetric Zener overvoltage limiters[cite: 1].</li>
+            <li>Extracted dynamic Zener breakdown resistance ($R_z$) and forward resistance ($R_f$) in LTspice[cite: 1].</li>
           </ul>
         </div>
 
@@ -650,11 +717,11 @@
           <div class="lab-code">UW EE 331</div>
           <h3 class="lab-title">AC-DC Rectification, Smoothing &amp; Zener Regulation</h3>
           <p>
-            Evaluated half-wave and full-wave bridge rectifier circuits driven by $10\text{ V}_{\text{peak}}$ AC transformer inputs. Quantified exponential filter discharge dynamics ($V(t) = (V_p - V_{\text{on}})e^{-t/RC}$) and ripple doubling effects ($2f_{\text{in}} = 120\text{ Hz}$).
+            Evaluated half-wave and full-wave bridge rectifier circuits driven by $10\text{ V}_{\text{peak}}$ AC transformer inputs[cite: 1]. Quantified exponential filter discharge dynamics ($V(t) = (V_p - V_{\text{on}})e^{-t/RC}$) and ripple doubling effects ($2f_{\text{in}} = 120\text{ Hz}$)[cite: 1].
           </p>
           <ul class="lab-details">
-            <li>Benchmarked line and load regulation with a 1N4732 ($4.7\text{ V}$) Zener diode stage.</li>
-            <li>Modeled regulator drop-out thresholds where load pulls current below knee current ($I_Z < I_{ZK}$).</li>
+            <li>Benchmarked line and load regulation with a 1N4732 ($4.7\text{ V}$) Zener diode stage[cite: 1].</li>
+            <li>Modeled regulator drop-out thresholds where load pulls current below knee current ($I_Z < I_{ZK}$)[cite: 1].</li>
           </ul>
         </div>
 
@@ -663,11 +730,11 @@
           <div class="lab-code">UW ECE 233</div>
           <h3 class="lab-title">Transient RC Response &amp; Op-Amp Bandwidth</h3>
           <p>
-            Measured transient step responses of first-order RC networks on digital storage oscilloscopes, validating rise time ($t_r \approx 2.197RC$) and propagation delay ($t_{pd} \approx 0.693RC$) against theoretical derivations.
+            Measured transient step responses of first-order RC networks on digital storage oscilloscopes, validating rise time ($t_r \approx 2.197RC$) and propagation delay ($t_{pd} \approx 0.693RC$) against theoretical derivations[cite: 1].
           </p>
           <ul class="lab-details">
-            <li>Measured large-signal slew rate limits ($SR = |dV/dt|_{\max}$) across $-10\text{ V}$ to $+10\text{ V}$ transitions.</li>
-            <li>Constructed shunt-stabilized integrators ($R_2 \parallel C_f$) to prevent DC offset rail saturation ($\pm 12\text{ V}$).</li>
+            <li>Measured large-signal slew rate limits ($SR = |dV/dt|_{\max}$) across $-10\text{ V}$ to $+10\text{ V}$ transitions[cite: 1].</li>
+            <li>Constructed shunt-stabilized integrators ($R_2 \parallel C_f$) to prevent DC offset rail saturation ($\pm 12\text{ V}$)[cite: 1].</li>
           </ul>
         </div>
 
@@ -676,12 +743,12 @@
           <div class="lab-code">UW ECE 241</div>
           <h3 class="lab-title">Vectorized DSP, Image Processing &amp; Graph Connectomics</h3>
           <p>
-            Implemented vectorized signal synthesis, multi-dimensional tensor operations, and digital image processing algorithms in Python and NumPy.
+            Implemented vectorized signal synthesis, multi-dimensional tensor operations, and digital image processing algorithms in Python and NumPy[cite: 1].
           </p>
           <ul class="lab-details">
-            <li>Synthesized 16-bit PCM equal-temperament audio scales and polyphonic harmonic chords.</li>
-            <li>Analyzed the 279-neuron <i>C. elegans</i> connectome matrix and simulated repairs to damaged interneuron pathways.</li>
-            <li>Applied zero-padded causal rolling filters and Student's $t$-distribution confidence intervals to time series.</li>
+            <li>Synthesized 16-bit PCM equal-temperament audio scales and polyphonic harmonic chords[cite: 1].</li>
+            <li>Analyzed the 279-neuron <i>C. elegans</i> connectome matrix and simulated repairs to damaged interneuron pathways[cite: 1].</li>
+            <li>Applied zero-padded causal rolling filters and Student's $t$-distribution confidence intervals to time series[cite: 1].</li>
           </ul>
         </div>
 
@@ -698,11 +765,19 @@
       </div>
       <ul class="contact-links">
         <li><a href="mailto:kfraz@uw.edu">kfraz@uw.edu</a></li>
-        <li><a href="mailto:kairfrazier@gmail.com">kairfrazier@gmail.com</a></li>
+        <li><a href="mailto:kairfrazier@gmail.com">kairfrazier@gmail.com</a>[cite: 2]</li>
         <li><a href="https://github.com/kai-frazier" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="images/resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a></li>
       </ul>
     </div>
   </section>
+
+  <!-- Lightbox Modal Container -->
+  <div id="image-modal" class="modal" role="dialog" aria-label="Image Preview">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modal-img" alt="Enlarged technical plot">
+    <div id="modal-caption" class="modal-caption"></div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -710,6 +785,37 @@
       <span>&copy; 2026 Kai Frazier.</span>
     </div>
   </footer>
+
+  <!-- Lightbox Interaction Script -->
+  <script>
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalClose = document.querySelector('.modal-close');
+
+    document.querySelectorAll('.media-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const img = thumb.querySelector('img');
+        const caption = thumb.querySelector('figcaption');
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        modalCaption.textContent = caption ? caption.textContent : img.alt;
+      });
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target === modalClose) {
+        modal.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
 
 </body>
 </html>
