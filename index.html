@@ -3,578 +3,711 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kai Frazier — Engineering Record &amp; Portfolio</title>
+<title>Kai Frazier — Electrical Engineering Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&amp;family=Public+Sans:ital,wght@0,400;0,600;0,700;0,900;1,400&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- MathJax Script for LaTeX Equations -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <style>
   :root {
-    --navy: #162e51;
-    --navy-dark: #0f1b2d;
-    --blue: #005ea2;
-    --blue-light: #e7f2fa;
-    --gold: #ffbe2e;
-    --red: #b31942;
-    --ink: #1b1b1b;
-    --gray: #565c65;
-    --gray-light: #dfe1e2;
-    --paper: #f0f0f0;
-    --white: #ffffff;
+    --bg: #ffffff;
+    --bg-subtle: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --border-focus: #cbd5e1;
+    --accent: #1d4ed8;
+    --accent-hover: #1e40af;
+    --accent-light: #eff6ff;
+    --tag-bg: #f1f5f9;
     --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Public Sans', Arial, sans-serif;
-    color: var(--ink);
-    background: var(--white);
+    font-family: var(--sans);
+    color: var(--text-main);
+    background-color: var(--bg);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4 { font-family: 'Merriweather', Georgia, serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
 
-  a { color: var(--blue); text-decoration: underline; }
-  a:hover { color: var(--navy); }
-
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-
-  /* Top Banner */
-  .gov-banner {
-    background: var(--paper);
-    border-bottom: 1px solid var(--gray-light);
-    font-size: 12px;
-    color: var(--ink);
-  }
-  .gov-banner .wrap {
-    display: flex; align-items: center; gap: 8px; padding: 6px 24px;
-  }
-  .gov-banner .flag { font-size: 14px; line-height: 1; }
-
-  /* Header */
-  header.site-header {
-    background: var(--navy);
-    border-bottom: 6px solid var(--gold);
-  }
-  .header-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 22px 24px; flex-wrap: wrap; gap: 20px;
-  }
-  .brand { display: flex; align-items: center; gap: 16px; }
-  .seal {
-    width: 56px; height: 56px; border-radius: 50%;
-    border: 2px solid var(--gold);
-    background: var(--navy-dark);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; flex-shrink: 0;
-  }
-  .seal::before {
-    content: ''; position: absolute; inset: 4px; border-radius: 50%;
-    border: 1px dashed rgba(255,190,46,0.5);
-  }
-  .seal span {
-    color: var(--gold); font-family: 'Merriweather', serif; font-weight: 900; font-size: 18px;
-  }
-  .brand-text .name {
-    color: var(--white); font-family: 'Merriweather', serif; font-weight: 700; font-size: 22px;
-  }
-  .brand-text .dept {
-    color: #c9d5e5; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px;
+  /* Navigation */
+  header {
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
   }
 
-  nav.primary-nav { background: #0d2240; }
-  nav.primary-nav ul {
-    list-style: none; display: flex; gap: 0; max-width: 1120px; margin: 0 auto; padding: 0 24px; flex-wrap: wrap;
-  }
-  nav.primary-nav a {
-    display: block; color: var(--white); text-decoration: none; font-weight: 600; font-size: 14px;
-    padding: 14px 20px; border-right: 1px solid #1c3860;
-  }
-  nav.primary-nav a:hover { background: var(--blue); }
-
-  /* Breadcrumb */
-  .breadcrumb {
-    background: var(--paper); border-bottom: 1px solid var(--gray-light);
-    font-size: 13px; padding: 10px 0; color: var(--gray);
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
   }
 
-  /* Hero */
+  .brand {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .brand span {
+    color: var(--text-light);
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+
+  nav ul { list-style: none; display: flex; gap: 24px; }
+  nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* Hero Section */
   .hero {
-    background: var(--blue-light);
-    border-bottom: 1px solid var(--gray-light);
-    padding: 56px 0 48px;
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--border);
   }
-  .hero-grid {
-    display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start;
-  }
-  @media(max-width:850px){ .hero-grid{ grid-template-columns: 1fr; } }
-  .doc-label {
-    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray);
-    font-weight: 700; margin-bottom: 10px; display: block; font-family: var(--mono);
-  }
-  h1.hero-title {
-    font-size: clamp(26px, 3.5vw, 38px); font-weight: 900; color: var(--navy); line-height: 1.2; margin-bottom: 16px;
-  }
-  .hero-sub { font-size: 15px; color: var(--ink); max-width: 650px; margin-bottom: 22px; }
 
-  .status-box {
-    background: var(--white); border: 1px solid var(--gray-light); border-left: 5px solid var(--blue);
-    padding: 18px 20px; font-size: 13px;
+  .hero h1 {
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+    margin-bottom: 12px;
+    line-height: 1.25;
   }
-  .status-box .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dotted var(--gray-light); }
-  .status-box .row:last-child { border-bottom: none; }
-  .status-box .label { color: var(--gray); }
-  .status-box .value { font-weight: 600; color: var(--navy); }
-  .status-box .value.active { color: #00a91c; }
 
-  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
-  .btn {
-    display: inline-block; padding: 10px 20px; font-weight: 600; font-size: 13px;
-    text-decoration: none; border: 2px solid var(--blue); cursor: pointer;
+  .hero p {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 740px;
+    line-height: 1.65;
   }
-  .btn.primary { background: var(--blue); color: var(--white); }
-  .btn.primary:hover { background: var(--navy); border-color: var(--navy); }
-  .btn.secondary { background: var(--white); color: var(--blue); }
-  .btn.secondary:hover { background: var(--blue-light); }
+
+  .hero-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero-links a {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--accent);
+  }
+  .hero-links a:hover { text-decoration: underline; }
+
+  /* Skills Grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+
+  .skill-group {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+
+  .skill-group h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-light);
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: var(--mono);
+  }
+
+  .skill-group ul {
+    list-style: none;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+
+  .skill-group li { margin-bottom: 5px; }
 
   /* Sections */
-  section { padding: 52px 0; border-bottom: 1px solid var(--gray-light); }
-  .section-header { margin-bottom: 32px; }
-  .section-header .doc-label { color: var(--red); }
-  h2.section-title { font-size: 26px; color: var(--navy); font-weight: 900; }
-  .section-desc { color: var(--gray); font-size: 14px; margin-top: 6px; max-width: 700px; }
-
-  /* Tables & Forms */
-  .form-panel { border: 1px solid var(--gray-light); background: var(--white); margin-bottom: 24px; }
-  .form-panel-head {
-    background: var(--paper); padding: 12px 20px; border-bottom: 1px solid var(--gray-light);
-    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray);
-    display: flex; justify-content: space-between; font-family: var(--mono);
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  .section-header { margin-bottom: 28px; }
+  .section-header h2 {
+    font-size: clamp(19px, 3vw, 22px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-main);
+  }
+  .section-header p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 4px;
   }
 
-  table.record-table { width: 100%; border-collapse: collapse; }
-  table.record-table th {
-    text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em;
-    color: var(--gray); background: var(--paper); padding: 12px 20px; border-bottom: 2px solid var(--gray-light);
-    width: 22%; font-family: var(--mono); vertical-align: top;
+  /* Projects List & Media Cards */
+  .projects-list { display: flex; flex-direction: column; gap: 24px; }
+
+  .project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    transition: border-color 0.15s ease;
   }
-  table.record-table td {
-    padding: 16px 20px; border-bottom: 1px solid var(--gray-light); font-size: 14px; vertical-align: top;
+
+  .project-card:hover { border-color: var(--border-focus); }
+
+  .project-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 24px;
+    align-items: start;
   }
-  table.record-table tr:last-child td, table.record-table tr:last-child th { border-bottom: none; }
-  .rec-role { font-weight: 700; color: var(--navy); font-size: 15px; margin-bottom: 2px; }
-  .rec-org { color: var(--gray); font-size: 13px; margin-bottom: 8px; }
-  .rec-list { padding-left: 18px; color: var(--ink); font-size: 13px; }
-  .rec-list li { margin-bottom: 4px; }
 
-  .skills-panels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gray-light); border: 1px solid var(--gray-light); }
-  @media(max-width:900px){ .skills-panels { grid-template-columns: repeat(2, 1fr); } }
-  @media(max-width:500px){ .skills-panels { grid-template-columns: 1fr; } }
-  .skill-panel { background: var(--white); padding: 18px 20px; }
-  .skill-panel h4 { font-family: 'Public Sans', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--red); margin-bottom: 10px; font-weight: 700; }
-  .skill-panel ul { list-style: none; font-size: 13px; color: var(--ink); }
-  .skill-panel li { padding: 4px 0; border-bottom: 1px solid var(--paper); }
-  .skill-panel li:last-child { border-bottom: none; }
-
-  /* Projects Case Files */
-  .case-list { display: flex; flex-direction: column; gap: 1px; background: var(--gray-light); border: 1px solid var(--gray-light); }
-  .case { background: var(--white); padding: 24px; display: grid; grid-template-columns: 110px 1fr 130px; gap: 24px; align-items: start; }
-  @media(max-width:850px){ .case { grid-template-columns: 1fr; } }
-  .case-id { font-size: 11px; color: var(--gray); font-family: var(--mono); }
-  .case-id b { display: block; font-size: 20px; color: var(--navy); font-family: 'Merriweather', serif; }
-  .case-title { font-weight: 700; color: var(--navy); font-size: 16px; margin-bottom: 6px; }
-  .case-desc { font-size: 13.5px; color: var(--ink); line-height: 1.55; }
-  .case-specs { margin-top: 8px; font-size: 12.5px; color: var(--gray); }
-  .case-tags { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
-  .case-tags span { font-size: 11px; background: var(--paper); border: 1px solid var(--gray-light); padding: 2px 7px; color: var(--gray); font-family: var(--mono); }
-  .case-status { text-align: right; }
-  @media(max-width:850px){ .case-status { text-align: left; } }
-  .status-pill {
-    display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase;
-    padding: 4px 10px; border-radius: 2px; letter-spacing: 0.04em; font-family: var(--mono);
+  @media (max-width: 820px) {
+    .project-layout { grid-template-columns: 1fr; }
   }
-  .status-pill.approved { background: #e6f4ea; color: #00a91c; border: 1px solid #00a91c; }
-  .status-pill.review { background: #fff1d2; color: #a86400; border: 1px solid #ffbe2e; }
 
-  /* Research & Lab Bulletins */
-  .bulletin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  @media(max-width:850px){ .bulletin-grid { grid-template-columns: 1fr; } }
-  .bulletin {
-    border: 1px solid var(--gray-light); padding: 22px; position: relative; padding-left: 24px; background: var(--white);
-    display: flex; flex-direction: column; justify-content: space-between;
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
-  .bulletin::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--gold); }
-  .bulletin.active::before { background: #00a91c; }
-  .bulletin-num { font-size: 11px; color: var(--gray); margin-bottom: 6px; font-family: var(--mono); }
-  .bulletin-title { font-weight: 700; color: var(--navy); font-size: 15px; margin-bottom: 8px; }
-  .bulletin-desc { font-size: 13px; color: var(--ink); margin-bottom: 12px; line-height: 1.5; }
-  .bulletin-list { font-size: 12.5px; color: var(--ink); margin-bottom: 14px; padding-left: 18px; }
-  .bulletin-list li { margin-bottom: 4px; }
-  .bulletin-foot { font-size: 11px; color: var(--gray); display: flex; justify-content: space-between; border-top: 1px dotted var(--gray-light); padding-top: 10px; font-family: var(--mono); }
 
-  /* Contact Panel & Footer */
-  .contact-panel { background: var(--navy); color: var(--white); padding: 48px 0; }
-  .contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
-  @media(max-width:800px){ .contact-grid { grid-template-columns: 1fr; } }
-  .contact-panel h2 { color: var(--white); font-size: 24px; margin-bottom: 12px; }
-  .contact-panel p { color: #c9d5e5; font-size: 14px; max-width: 500px; }
-  .contact-list { list-style: none; }
-  .contact-list li { margin-bottom: 12px; font-size: 13.5px; }
-  .contact-list a { color: var(--white); font-weight: 600; }
-  .contact-list .k { color: #8ba3c4; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 2px; font-family: var(--mono); }
+  .card-title {
+    font-size: clamp(16px, 2.5vw, 17.5px);
+    font-weight: 600;
+    color: var(--text-main);
+  }
 
-  footer.site-footer { background: var(--navy-dark); color: #8ba3c4; font-size: 12px; padding: 22px 0; }
-  .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-  .footer-bottom a { color: #8ba3c4; }
+  .status-tag {
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  .status-tag.ongoing { background: #e0f2fe; color: #0369a1; }
+  .status-tag.completed { background: #f1f5f9; color: #475569; }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .project-specs {
+    font-size: 13px;
+    background: var(--bg-subtle);
+    border-left: 3px solid var(--border-focus);
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags span {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    background: var(--tag-bg);
+    color: var(--text-muted);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  /* Visual Media Thumbnails */
+  .media-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .media-gallery { grid-template-columns: 1fr; }
+  }
+
+  .media-thumb {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--bg-subtle);
+  }
+
+  .media-thumb img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+    background-color: #ffffff;
+    transition: transform 0.2s ease;
+  }
+
+  .media-thumb img:hover { transform: scale(1.03); }
+
+  .media-thumb figcaption {
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--text-muted);
+    padding: 5px 8px;
+    text-align: center;
+    background: #ffffff;
+    border-top: 1px solid var(--border);
+    line-height: 1.3;
+  }
+
+  /* Labs Grid */
+  .labs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .labs-grid { grid-template-columns: 1fr; }
+  }
+
+  .lab-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    background: var(--bg-card);
+  }
+
+  .lab-code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .lab-title {
+    font-size: clamp(14.5px, 2.2vw, 15.5px);
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+  }
+
+  .lab-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .lab-details {
+    list-style: none;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .lab-details li {
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 12px;
+    line-height: 1.5;
+  }
+
+  .lab-details li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-light);
+  }
+
+  /* Contact & Footer */
+  .contact-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    font-size: 14px;
+    flex-wrap: wrap;
+  }
+
+  .contact-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .contact-links a:hover { text-decoration: underline; }
+
+  footer {
+    padding: 32px 0;
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .project-card { padding: 18px 16px; }
+    .lab-card { padding: 16px; }
+  }
 </style>
 </head>
 <body>
 
-  <!-- Top Identification Banner -->
-  <div class="gov-banner">
-    <div class="wrap">
-      <span class="flag">&#128225;</span>
-      <span>Engineering Records &amp; Project Dossier for <b>Kai Frazier</b>.</span>
-    </div>
-  </div>
-
-  <!-- Site Header -->
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <div class="brand">
-        <div class="seal"><span>KF</span></div>
-        <div class="brand-text">
-          <div class="name">Kai Frazier</div>
-          <div class="dept">Department of Electrical &amp; Computer Engineering</div>
-        </div>
-      </div>
+  <!-- Navigation -->
+  <header>
+    <div class="wrap nav-inner">
+      <a href="#" class="brand">Kai Frazier <span>UW ECE</span></a>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#labs">Lab Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <nav class="primary-nav">
-    <ul>
-      <li><a href="#resume">Record SF-171</a></li>
-      <li><a href="#projects">Case Files</a></li>
-      <li><a href="#labs">Laboratory Dossiers</a></li>
-      <li><a href="#contact">Contact Direct</a></li>
-    </ul>
-  </nav>
-
-  <div class="breadcrumb">
-    <div class="wrap">UW Seattle ECE &nbsp;/&nbsp; Technical Dossier KF-2026-ENG</div>
-  </div>
-
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="doc-label">Engineering Profile · Ref. KF-2026-ENG</span>
-        <h1 class="hero-title">RF Circuits, Analog Systems &amp; Scientific Computing</h1>
-        <p class="hero-sub">Electrical &amp; Computer Engineering student at the <b>University of Washington — Seattle</b>. Focused on microstrip RF filter synthesis, power electronics, analog signal conditioning, and scientific computation in Fortran and Python.</p>
-        <div class="btn-row">
-          <a href="#projects" class="btn primary">Examine Case Files</a>
-          <a href="#labs" class="btn secondary">Review Laboratory Reports</a>
-        </div>
-      </div>
-      <div class="status-box">
-        <div class="row"><span class="label">Institution</span><span class="value">UW Seattle (ECE)</span></div>
-        <div class="row"><span class="label">Core Specialization</span><span class="value">RF &amp; Analog Hardware</span></div>
-        <div class="row"><span class="label">Active Build</span><span class="value">1090 MHz Hairpin Filter</span></div>
-        <div class="row"><span class="label">Simulation Suite</span><span class="value">Ansys HFSS / LTspice</span></div>
-        <div class="row"><span class="label">Academic Status</span><span class="value active">Active / Enrolled</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resume Section -->
-  <section id="resume">
+  <div class="hero" id="about">
     <div class="wrap">
-      <div class="section-header">
-        <span class="doc-label">Form SF-171 · Qualifications &amp; Service History</span>
-        <h2 class="section-title">Academic &amp; Technical Record</h2>
-        <p class="section-desc">Summary of formal academic coursework, departmental positions, and engineering competencies.</p>
+      <h1>Electrical &amp; Computer Engineering</h1>
+      <p>B.S. Electrical &amp; Computer Engineering student at the <b>University of Washington</b> (Expected March 2028), focusing on RF circuit design, power electronics, analog signal conditioning, and scientific computation. Experienced in electromagnetic simulation, SPICE modeling, and benchtop hardware testing.</p>
+      <div class="hero-links">
+        <a href="#projects">View Projects &rarr;</a>
+        <a href="#labs">Lab &amp; Measurement Reports &rarr;</a>
       </div>
 
-      <div class="form-panel">
-        <div class="form-panel-head"><span>Coursework &amp; Experience History</span><span>Doc Ref. SF-171</span></div>
-        <table class="record-table">
-          <tr>
-            <th>2025 – Present</th>
-            <td>
-              <div class="rec-role">Undergraduate Student Staff &amp; Advising Assistant</div>
-              <div class="rec-org">UW Department of Electrical &amp; Computer Engineering — Seattle, WA</div>
-              <ul class="rec-list">
-                <li>Manage front-desk departmental operations, student records, and public engineering inquiries.</li>
-                <li>Coordinate internal communications and document workflows across ECE faculty and advising units.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <th>2024 – 2026</th>
-            <td>
-              <div class="rec-role">Undergraduate Engineering Curriculum</div>
-              <div class="rec-org">University of Washington &amp; Edmonds College</div>
-              <ul class="rec-list">
-                <li><b>UW EE 331:</b> Devices and Circuits I — Semiconductor physics, diode characterization, Zener regulators, switch-mode power converters[cite: 1].</li>
-                <li><b>UW ECE 233:</b> Circuit Theory &amp; Analog Design — Transient RC analysis, op-amp slew rates, active filtering, audio mixing consoles[cite: 1].</li>
-                <li><b>UW ECE 241:</b> Advanced Programming &amp; Data Science — NumPy vectorization, digital signal/image processing, graph algorithms, and debugging[cite: 1].</li>
-              </ul>
-            </td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="skills-panels">
-        <div class="skill-panel">
-          <h4>RF &amp; Electromagnetics</h4>
+      <!-- Technical Competencies -->
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>RF &amp; Electromagnetics</h3>
           <ul>
-            <li>Microstrip Hairpins[cite: 1]</li>
-            <li>Coupled Line Synthesis[cite: 1]</li>
-            <li>J-Inverter Transforms[cite: 1]</li>
+            <li>Microstrip Hairpin Filters</li>
+            <li>Coupled Line Synthesis</li>
+            <li>$J$-Inverter Transformations</li>
             <li>Ansys HFSS / AEDT</li>
-            <li>AppCAD / LineCalc[cite: 1]</li>
-            <li>S-Parameters ($S_{11}, S_{21}$)[cite: 1]</li>
+            <li>Vector Network Analyzers (VNA)</li>
           </ul>
         </div>
-        <div class="skill-panel">
-          <h4>Analog &amp; Power</h4>
+        <div class="skill-group">
+          <h3>Analog &amp; Power</h3>
           <ul>
-            <li>Switched Boost Converters[cite: 1]</li>
-            <li>Full-Wave Rectification[cite: 1]</li>
-            <li>Zener Shunt Regulators[cite: 1]</li>
-            <li>Active Op-Amp Filters[cite: 1]</li>
-            <li>Non-Linear Limiters[cite: 1]</li>
-            <li>LTspice (.tran / .ac / .dc)[cite: 1]</li>
+            <li>Step-Up Boost Converters</li>
+            <li>Linear &amp; Zener Regulation</li>
+            <li>Full-Wave AC-DC Rectification</li>
+            <li>Active Op-Amp Filter Design</li>
+            <li>Mixed-Signal PCB Layout</li>
           </ul>
         </div>
-        <div class="skill-panel">
-          <h4>Computation &amp; Code</h4>
+        <div class="skill-group">
+          <h3>Software &amp; Tools</h3>
           <ul>
-            <li>Fortran 90/95 (Scientific)</li>
-            <li>Python 3 (NumPy / SciPy)[cite: 1]</li>
-            <li>Pandas &amp; NetworkX[cite: 1]</li>
-            <li>SMath Studio (Symbolic)[cite: 1]</li>
-            <li>PowerShell Scripting</li>
-            <li>Interactive Debugging (pdb)[cite: 1]</li>
+            <li>Fortran 90/95</li>
+            <li>Python (NumPy / SciPy)</li>
+            <li>LTspice (.tran / .ac / .dc)</li>
+            <li>SMath Studio</li>
+            <li>Git &amp; GitHub Version Control</li>
           </ul>
         </div>
-        <div class="skill-panel">
-          <h4>Bench Instrumentation</h4>
+        <div class="skill-group">
+          <h3>Instrumentation</h3>
           <ul>
-            <li>Rigol / Keysight DSOs[cite: 1]</li>
-            <li>X-Y Mode VTC Extraction[cite: 1]</li>
-            <li>Function Generators[cite: 1]</li>
-            <li>Step-Down Transformers[cite: 1]</li>
-            <li>Bench Multimeters (DMM)[cite: 1]</li>
-            <li>Acoustic Transducers[cite: 1]</li>
+            <li>Digital Storage Oscilloscopes</li>
+            <li>Arbitrary Function Generators</li>
+            <li>X-Y Mode VTC Characterization</li>
+            <li>6½-Digit Bench DMMs</li>
+            <li>SMD / Through-Hole Soldering</li>
           </ul>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Projects Section -->
   <section id="projects">
     <div class="wrap">
       <div class="section-header">
-        <span class="doc-label">Form PR-4 · Engineering Case Files</span>
-        <h2 class="section-title">Selected Projects</h2>
-        <p class="section-desc">Hardware builds, electromagnetic filter designs, and scientific computing programs.</p>
+        <h2>Engineering Projects</h2>
+        <p>Microstrip RF syntheses, power converter hardware, PCB prototypes, and computational tools.</p>
       </div>
 
-      <div class="case-list">
+      <div class="projects-list">
 
-        <!-- Case 01: Hairpin Filter -->
-        <div class="case">
-          <div class="case-id">Case No. <b>01</b></div>
-          <div>
-            <div class="case-title">1090 MHz 4th-Order Chebyshev Microstrip Hairpin Bandpass Filter</div>
-            <div class="case-desc">
-              Designed a 4th-order ($N=4$) Chebyshev bandpass filter centered at 1090 MHz with 45 MHz passband bandwidth ($FBW = 4.13\%$) for ADS-B signal reception[cite: 1]. Derived low-pass prototype $g_i$ values, admittance inverters ($J_{01}/Y_0 = 0.2419$, $J_{12}/Y_0 = 0.0448$), and even/odd mode impedances ($Z_{0e}, Z_{0o}$)[cite: 1]. Folded $\lambda/2$ resonators into U-shaped hairpins to cut board area by $>50\%$ and integrated direct $50\ \Omega$ tapped feeds ($L_{\text{tap}}$) to guarantee return loss $S_{11} < -15\text{ dB}$[cite: 1].
-            </div>
-            <div class="case-specs">
-              <b>Substrate:</b> FR-4 ($\epsilon_r = 4.4$, $H = 1.524\text{ mm}$, $\tan\delta = 0.015$)[cite: 1] &bull; <b>Rejection:</b> $\ge 30\text{ dB}$ at 1170 MHz[cite: 1] &bull; <b>Trace Spacing:</b> $S \ge 8.38\text{ mil}$[cite: 1]
-            </div>
-            <div class="case-tags">
-              <span>Ansys HFSS</span><span>Microstrip</span><span>RF Synthesis</span><span>SMath Studio</span><span>Fortran</span>[cite: 1]
-            </div>
+        <!-- Project 1: Hairpin Bandpass Filter -->
+        <div class="project-card">
+          <div class="card-top">
+            <h3 class="card-title">1090 MHz 4th-Order Chebyshev Microstrip Hairpin Filter</h3>
+            <span class="status-tag ongoing">Ongoing</span>
           </div>
-          <div class="case-status"><span class="status-pill approved">Active</span></div>
+          <p class="project-desc">
+            Synthesized and simulated a 4th-order Chebyshev bandpass filter centered at 1090 MHz with a 45 MHz passband ($FBW = 4.13\%$) for ADS-B signal reception. Derived prototype $g_i$ values, admittance inverters ($J_{01}/Y_0 = 0.2419$, $J_{12}/Y_0 = 0.0448$), and even/odd mode impedances ($Z_{0e}, Z_{0o}$). Folded $\lambda/2$ resonators into U-shaped hairpins to cut board area by $>50\%$ and implemented direct $50\ \Omega$ tapped-line feeds to achieve return loss $S_{11} < -15\text{ dB}$.
+          </p>
+          <div class="project-specs">
+            <b>Specifications:</b> FR-4 Substrate ($\epsilon_r = 4.4$, $H = 1.524\text{ mm}$, $\tan\delta = 0.015$) | Stopband Rejection $\ge 30\text{ dB}$ at 1170 MHz | Trace Gap $S \ge 8.38\text{ mil}$
+          </div>
+          <div class="tags">
+            <span>Ansys HFSS</span>
+            <span>Microstrip Synthesis</span>
+            <span>S-Parameters</span>
+            <span>Fortran</span>
+            <span>SMath Studio</span>
+          </div>
         </div>
 
-        <!-- Case 02: Boost Converter -->
-        <div class="case">
-          <div class="case-id">Case No. <b>02</b></div>
-          <div>
-            <div class="case-title">Switched-Mode AC-to-DC Voltage Amplifying Boost Converter</div>
-            <div class="case-desc">
-              Constructed a complete AC-to-DC power converter converting $\pm 7.5\text{ VAC}$ ($10\text{ V}_{\text{peak}}$, 60 Hz) into an intermediate $+10.0\text{ VDC}$ unregulated rail via a 1N4007 full-wave bridge rectifier and bulk capacitive filter ($V_{\text{ripple}} < 1.0\text{ V}_{\text{p-p}}$)[cite: 1]. Integrated an inductive Continuous Conduction Mode (CCM) boost stage ($V_{\text{out}} = V_{\text{in}}/(1-D)$) driven by a 10–100 kHz clock, stepped up from $+10.0\text{ VDC}$ to $+20.0\text{ VDC}$ using single-potentiometer duty-cycle control with output ripple under $100\text{ mV}_{\text{p-p}}$ at 1.0 mA[cite: 1].
+        <!-- Project 2: AC-DC Boost Converter (With Image Media) -->
+        <div class="project-card">
+          <div class="project-layout">
+            <div>
+              <div class="card-top">
+                <h3 class="card-title">AC-to-DC Power Supply &amp; Step-Up Boost Converter</h3>
+                <span class="status-tag completed">Completed</span>
+              </div>
+              <p class="project-desc">
+                Constructed a two-stage power supply converting $\pm 7.5\text{ VAC}$ ($10\text{ V}_{\text{peak}}$, 60 Hz) into an intermediate $+10.0\text{ VDC}$ rail via a 1N4007 full-wave bridge rectifier and capacitive filter[cite: 7]. Stepped up voltage from $+9.25\text{ VDC}$ to $+18.65\text{ VDC}$ using an inductive Continuous Conduction Mode (CCM) boost topology ($V_{\text{out}} = V_{\text{in}} / (1 - D)$) driven by a 555-timer clock, with potentiometer duty-cycle control and output ripple verified at $\approx 71.6\text{ mV}_{\text{p-p}}$[cite: 7].
+              </p>
+              <div class="project-specs">
+                <b>Verified Bench Data:</b> $+9.25\text{ V}$ to $+18.65\text{ V}$ DC Tuning Range | $65.0 - 71.6\text{ mV}$ Ripple (Spec: $<100\text{ mV}$) | CCM Inductive Switching[cite: 7]
+              </div>
+              <div class="tags">
+                <span>Power Electronics</span>
+                <span>LTspice</span>
+                <span>Hardware Prototyping</span>
+                <span>Keysight DSO</span>
+              </div>
             </div>
-            <div class="case-specs">
-              <b>Topology:</b> Inductive Boost + Full-Bridge AC-DC[cite: 1] &bull; <b>Range:</b> $+10.0\text{ V}$ to $+20.0\text{ V}$ regulated[cite: 1] &bull; <b>Load:</b> $0.0 - 1.0\text{ mA}$[cite: 1]
-            </div>
-            <div class="case-tags">
-              <span>Power Electronics</span><span>LTspice</span><span>Inductive Switching</span><span>Hardware</span>[cite: 1]
+
+            <!-- Media Column -->
+            <div class="media-gallery">
+              <figure class="media-thumb">
+                <img src="images/boost-schematic.png" alt="Boost Converter Complete Schematic">
+                <figcaption>Circuit Schematic[cite: 7]</figcaption>
+              </figure>
+              <figure class="media-thumb">
+                <img src="images/boost-scope-high.jpg" alt="Keysight DSO Output Capture 18.65V">
+                <figcaption>18.65V DC Scope Trace[cite: 7]</figcaption>
+              </figure>
             </div>
           </div>
-          <div class="case-status"><span class="status-pill approved">Validated</span></div>
         </div>
 
-        <!-- Case 03: Audio Mixer & Equalizer -->
-        <div class="case">
-          <div class="case-id">Case No. <b>03</b></div>
-          <div>
-            <div class="case-title">3-Channel Analog Audio Mixing Console &amp; Multi-Band Equalizer</div>
-            <div class="case-desc">
-              Designed a multi-stage analog audio system handling two line-level inputs and one electret condenser microphone (ECM) channel[cite: 1]. Built an active low-noise microphone preamplifier with DC-blocking ($1\ \mu\text{F}$) and HF noise attenuation, feeding a 3-channel virtual-ground inverting summing bus[cite: 1]. Isolated the summer with a unity-gain buffer driving parallel active 1st-order Bass (low-pass), Midrange (band-pass), and Treble (high-pass/shelving) equalizer stages before recombining into an output speaker amplifier[cite: 1].
+        <!-- Project 3: Audio Mixer & Equalizer (With Image Media) -->
+        <div class="project-card">
+          <div class="project-layout">
+            <div>
+              <div class="card-top">
+                <h3 class="card-title">3-Channel Analog Audio Mixing Console &amp; Multi-Band Equalizer</h3>
+                <span class="status-tag completed">Completed</span>
+              </div>
+              <p class="project-desc">
+                Engineered an analog audio processing console handling two line-level inputs and one electret condenser microphone channel[cite: 5]. Includes an active low-noise preamplifier with DC blocking ($1\ \mu\text{F}$) and high-frequency noise attenuation, feeding into a 3-channel virtual-ground inverting summing amplifier[cite: 5]. A unity-gain buffer isolates the mixer from a parallel active 1st-order Bass, Midrange, and Treble filter bank before driving a low-impedance speaker output stage[cite: 5].
+              </p>
+              <div class="project-specs">
+                <b>Specifications:</b> $\pm 15\text{ V}$ Rails | Active Op-Amp Equalizer (250 Hz, 1 kHz, 4 kHz center frequencies) | Dual-Channel DSO Verification[cite: 5]
+              </div>
+              <div class="tags">
+                <span>Analog Design</span>
+                <span>Active Filters</span>
+                <span>Op-Amps</span>
+                <span>LM348N</span>[cite: 5]
+              </div>
             </div>
-            <div class="case-specs">
-              <b>Supply:</b> $\pm 12\text{ V}$ Dual Rails[cite: 1] &bull; <b>Bandwidth:</b> $50\text{ Hz} - 5\text{ kHz}$ Acoustic[cite: 1] &bull; <b>Architecture:</b> Op-Amp Active Filter Bank[cite: 1]
-            </div>
-            <div class="case-tags">
-              <span>Analog Design</span><span>Active Filters</span><span>Op-Amps</span><span>Audio Systems</span>[cite: 1]
+
+            <!-- Media Column -->
+            <div class="media-gallery">
+              <figure class="media-thumb">
+                <img src="images/audio-schematic.png" alt="Active Filter Circuit Schematic">
+                <figcaption>Active Filter Topology[cite: 5]</figcaption>
+              </figure>
+              <figure class="media-thumb">
+                <img src="images/audio-waveform.png" alt="Dual-Channel Oscilloscope Waveform">
+                <figcaption>Input vs. Output Trace[cite: 5]</figcaption>
+              </figure>
             </div>
           </div>
-          <div class="case-status"><span class="status-pill approved">Completed</span></div>
         </div>
 
-        <!-- Case 04: Scientific Computing Engine -->
-        <div class="case">
-          <div class="case-id">Case No. <b>04</b></div>
-          <div>
-            <div class="case-title">Fortran &amp; SMath Numerical Computation Pipelines</div>
-            <div class="case-desc">
-              Engineered compiled Fortran 90/95 modules and SMath Studio symbolic sheets to execute matrix transformations, Chebyshev filter synthesis polynomials, and distributed microstrip impedance matching formulas[cite: 1]. Provides high-speed parameter sweeps for electrical length ($\lambda_g/4$), even/odd mode impedances ($Z_{0e}, Z_{0o}$), and physical microstrip width/spacing ratios ($W/H, S/H$)[cite: 1].
-            </div>
-            <div class="case-tags">
-              <span>Fortran 90/95</span><span>Numerical Math</span><span>Algorithm Design</span><span>CAD Automation</span>[cite: 1]
-            </div>
+        <!-- Project 4: Custom Mixed-Signal PCB Prototype -->
+        <div class="project-card">
+          <div class="card-top">
+            <h3 class="card-title">Custom Mixed-Signal PCB Prototype (EE 201)</h3>
+            <span class="status-tag completed">Completed</span>
           </div>
-          <div class="case-status"><span class="status-pill approved">Active</span></div>
+          <p class="project-desc">
+            Executed full schematic capture and physical trace routing for a mixed-signal printed circuit board adhering to standard PCB design rules and fabrication constraints[cite: 2]. Populated circuit boards using precision through-hole and surface-mount (SMD) soldering techniques, validating board-level signal integrity, power distribution, and functional timing with bench oscilloscopes, multimeters, and function generators[cite: 2].
+          </p>
+          <div class="project-specs">
+            <b>Scope:</b> Schematic Capture &amp; Layout | SMD / Through-Hole Assembly | Board Bring-Up &amp; Signal Integrity Validation[cite: 2]
+          </div>
+          <div class="tags">
+            <span>PCB Layout</span>
+            <span>Schematic Capture</span>
+            <span>SMD Soldering</span>
+            <span>Hardware Bring-Up</span>
+          </div>
         </div>
 
-        <!-- Case 05: Data Science & Neural Graph Analysis -->
-        <div class="case">
-          <div class="case-id">Case No. <b>05</b></div>
-          <div>
-            <div class="case-title">Neural Connectome Analysis &amp; Signal Processing Engine</div>
-            <div class="case-desc">
-              Built data processing algorithms in Python/NumPy for 2D/3D matrix manipulation, audio synthesis, and graph theory[cite: 1]. Implemented adjacency matrix operations on the 279-neuron *C. elegans* synaptic connectome to isolate Sensory, Interneuron, and Motor sub-networks, and engineered a matrix repair algorithm restoring damaged AVAL/AVAR interneuron pathways to verify behavioral recovery[cite: 1].
-            </div>
-            <div class="case-tags">
-              <span>Python</span><span>NumPy</span><span>NetworkX</span><span>Signal Processing</span>[cite: 1]
-            </div>
+        <!-- Project 5: Scientific Numerical Computation Engine -->
+        <div class="project-card">
+          <div class="card-top">
+            <h3 class="card-title">Fortran &amp; SMath Numerical Computation Pipelines</h3>
+            <span class="status-tag ongoing">Ongoing</span>
           </div>
-          <div class="case-status"><span class="status-pill approved">Completed</span></div>
+          <p class="project-desc">
+            Developed compiled Fortran 90/95 routines and SMath symbolic worksheets to execute matrix transformations, Chebyshev prototype polynomial evaluations, and microstrip impedance transformations. Automated analytical solving of electrical lengths ($\lambda_g / 4$), odd/even characteristic impedances ($Z_{0e}, Z_{0o}$), and physical microstrip line dimensions ($W/H, S/H$).
+          </p>
+          <div class="tags">
+            <span>Fortran 90/95</span>
+            <span>SMath Studio</span>
+            <span>Numerical Math</span>
+            <span>Algorithm Design</span>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Laboratory Reports & Bulletins Section -->
+  <!-- Laboratory Reports Section -->
   <section id="labs">
     <div class="wrap">
       <div class="section-header">
-        <span class="doc-label">Technical Bulletins · Laboratory Investigations</span>
-        <h2 class="section-title">Laboratory Research Dossiers</h2>
-        <p class="section-desc">Empirical records, benchtop characterizations, and circuit modeling dossiers across ECE course sequences.</p>
+        <h2>Laboratory Reports &amp; Experimental Studies</h2>
+        <p>Experimental validation, bench measurement protocols, and hardware characterization.</p>
       </div>
 
-      <div class="bulletin-grid">
+      <div class="labs-grid">
 
-        <!-- Bulletin 1: EE 331 Module 1 & 2 -->
-        <div class="bulletin active">
-          <div>
-            <div class="bulletin-num">Dossier EE-331-A &bull; Semiconductor Characterization &amp; Limiters</div>
-            <div class="bulletin-title">Semiconductor Physics, Non-Linear Wave-Shaping &amp; Dynamic Profiling</div>
-            <div class="bulletin-desc">
-              Empirical bench extraction of diode forward $I\text{-}V$ conduction dynamics, minority-carrier reverse leakage ($I_{\text{leak}} = V_{R1}/1.0\text{ M}\Omega$), and ideality factors ($\eta$) across five current decades ($1\ \mu\text{A}$ to $10\text{ mA}$) for 1N4007, 1N4148, and 1N5819 devices[cite: 1].
-            </div>
-            <ul class="bulletin-list">
-              <li><b>Wave-Shaping Limiters:</b> Built anti-parallel ($\pm 0.7\text{ V}$), dual-series ($\pm 1.4\text{ V}$), asymmetric Zener ($-0.7\text{ V}$ to $+4.7\text{ V}$), and back-to-back Zener ($\pm 5.4\text{ V}$) clippers[cite: 1].</li>
-              <li><b>Oscilloscope VTC:</b> Mapped dynamic Voltage Transfer Characteristics in X-Y acquisition mode and extracted dynamic resistance ($R_z = \Delta V_Z / \Delta I_Z$)[cite: 1].</li>
-              <li><b>Simulation:</b> Verified breakdown transitions and forward turn-on profiles via LTspice <code>.dc</code> sweeps[cite: 1].</li>
-            </ul>
-          </div>
-          <div class="bulletin-foot"><span>UW EE 331</span><span>Semiconductors / LTspice</span></div>
+        <!-- Lab 1: EE 331 Semiconductor Physics -->
+        <div class="lab-card">
+          <div class="lab-code">UW EE 331</div>
+          <h3 class="lab-title">Semiconductor Physics &amp; Non-Linear Wave-Shaping</h3>
+          <p>
+            Characterized forward conduction and minority-carrier reverse leakage across silicon rectifiers (1N4007), fast-switching diodes (1N4148), and Schottky diodes (1N5819) over five decades of current ($1\ \mu\text{A}$ to $10\text{ mA}$). Extracted ideality factors ($\eta$) and mapped dynamic Voltage Transfer Characteristics (VTC) in oscilloscope X-Y mode.
+          </p>
+          <ul class="lab-details">
+            <li>Built symmetric ($\pm 0.7\text{ V}$, $\pm 1.4\text{ V}$) and asymmetric Zener overvoltage limiters.</li>
+            <li>Extracted dynamic Zener breakdown resistance ($R_z$) and forward resistance ($R_f$) in LTspice.</li>
+          </ul>
         </div>
 
-        <!-- Bulletin 2: EE 331 Module 3 -->
-        <div class="bulletin active">
-          <div>
-            <div class="bulletin-num">Dossier EE-331-B &bull; AC-DC Conversion &amp; Regulation</div>
-            <div class="bulletin-title">Bridge Rectification, Capacitive Smoothing &amp; Zener Regulation</div>
-            <div class="bulletin-desc">
-              Designed and analyzed half-wave and full-wave bridge rectifier circuits driven by $10\text{ V}_{\text{peak}}$ AC transformer lines, calculating exponential discharge decays ($V(t) = (V_p - V_{\text{on}})e^{-t/RC}$) and conduction intervals[cite: 1].
-            </div>
-            <ul class="bulletin-list">
-              <li><b>Ripple Optimization:</b> Measured fundamental ripple doubling ($2f_{\text{in}} = 120\text{ Hz}$) in full-bridge rectifiers, reducing ripple voltage by $\approx 50\%$ over half-wave stages[cite: 1].</li>
-              <li><b>Shunt Zener Regulator:</b> Characterized line and load regulation with a 1N4732 ($4.7\text{ V}$) Zener under static and dynamic loading ($470\ \Omega$ to $10\text{ k}\Omega$)[cite: 1].</li>
-              <li><b>Dropout Modeling:</b> Analyzed failure boundaries when load current forces Zener current below knee current ($I_Z < I_{ZK}$)[cite: 1].</li>
-            </ul>
-          </div>
-          <div class="bulletin-foot"><span>UW EE 331</span><span>Power / Bench DMM</span></div>
+        <!-- Lab 2: EE 331 Rectification & Regulation -->
+        <div class="lab-card">
+          <div class="lab-code">UW EE 331</div>
+          <h3 class="lab-title">AC-DC Rectification, Smoothing &amp; Zener Regulation</h3>
+          <p>
+            Evaluated half-wave and full-wave bridge rectifier circuits driven by $10\text{ V}_{\text{peak}}$ AC transformer inputs. Quantified exponential filter discharge dynamics ($V(t) = (V_p - V_{\text{on}})e^{-t/RC}$) and ripple doubling effects ($2f_{\text{in}} = 120\text{ Hz}$).
+          </p>
+          <ul class="lab-details">
+            <li>Benchmarked line and load regulation with a 1N4732 ($4.7\text{ V}$) Zener diode stage.</li>
+            <li>Modeled regulator drop-out thresholds where load pulls current below knee current ($I_Z < I_{ZK}$).</li>
+          </ul>
         </div>
 
-        <!-- Bulletin 3: ECE 233 Transient & Op-Amp Dynamics -->
-        <div class="bulletin active">
-          <div>
-            <div class="bulletin-num">Dossier ECE-233-A &bull; Circuit Theory &amp; Amplifiers</div>
-            <div class="bulletin-title">Transient RC Dynamics, Op-Amp Slew Rates &amp; Active Integrators</div>
-            <div class="bulletin-desc">
-              Hardware verification of first-order passive and active analog systems under time-domain pulse excitation and wideband frequency sweeps[cite: 1].
-            </div>
-            <ul class="bulletin-list">
-              <li><b>RC Parameter Extraction:</b> Extracted rise time ($t_r = RC\ln(9) \approx 2.197RC$) and propagation delay ($t_{pd} = RC\ln(2) \approx 0.693RC$) on digital storage oscilloscopes[cite: 1].</li>
-              <li><b>Slew Rate Limits:</b> Measured large-signal rate-of-change boundaries ($SR = |dV_{\text{out}}/dt|_{\max}$) on $-10\text{ V}$ to $+10\text{ V}$ step transitions to prevent triangular distortion[cite: 1].</li>
-              <li><b>Active Integrators &amp; Differentiators:</b> Built shunt-stabilized integrators ($R_2 \parallel C_f$) eliminating open-loop DC offset rail saturation ($\pm 12\text{ V}$)[cite: 1].</li>
-            </ul>
-          </div>
-          <div class="bulletin-foot"><span>UW ECE 233</span><span>Analog Systems / DSO</span></div>
+        <!-- Lab 3: ECE 233 Transient & Op-Amp Dynamics -->
+        <div class="lab-card">
+          <div class="lab-code">UW ECE 233</div>
+          <h3 class="lab-title">Transient RC Response &amp; Op-Amp Bandwidth</h3>
+          <p>
+            Measured transient step responses of first-order RC networks on digital storage oscilloscopes, validating rise time ($t_r \approx 2.197RC$) and propagation delay ($t_{pd} \approx 0.693RC$) against theoretical derivations.
+          </p>
+          <ul class="lab-details">
+            <li>Measured large-signal slew rate limits ($SR = |dV/dt|_{\max}$) across $-10\text{ V}$ to $+10\text{ V}$ transitions.</li>
+            <li>Constructed shunt-stabilized integrators ($R_2 \parallel C_f$) to prevent DC offset rail saturation ($\pm 12\text{ V}$).</li>
+          </ul>
         </div>
 
-        <!-- Bulletin 4: ECE 241 Signal & Data Processing -->
-        <div class="bulletin active">
-          <div>
-            <div class="bulletin-num">Dossier ECE-241-A &bull; Signals, Imaging &amp; Networks</div>
-            <div class="bulletin-title">Vectorized DSP, 2D Spatial Filtering &amp; Graph Connectomics</div>
-            <div class="bulletin-desc">
-              Scientific programming using NumPy, SciPy, and Matplotlib for audio signal synthesis, digital image matrices, and network science[cite: 1].
-            </div>
-            <ul class="bulletin-list">
-              <li><b>Audio Signal Synthesis:</b> Synthesized 8-note equal-temperament scales and polyphonic chords ($A+C\#, B+D, \dots$), exported to 16-bit PCM WAV formats[cite: 1].</li>
-              <li><b>Spatial Transformations:</b> Implemented 2D spatial downsampling (strided slicing vs. segment block averaging), alpha blending, and Gaussian surface generation[cite: 1].</li>
-              <li><b>Causal Time-Series Filtering:</b> Developed zero-padded causal moving-average/median filters and calculated Student's $t$-distribution confidence intervals[cite: 1].</li>
-            </ul>
-          </div>
-          <div class="bulletin-foot"><span>UW ECE 241</span><span>Python / NumPy / SciPy</span></div>
+        <!-- Lab 4: ECE 241 DSP & Graph Theory -->
+        <div class="lab-card">
+          <div class="lab-code">UW ECE 241</div>
+          <h3 class="lab-title">Vectorized DSP, Image Processing &amp; Graph Connectomics</h3>
+          <p>
+            Implemented vectorized signal synthesis, multi-dimensional tensor operations, and digital image processing algorithms in Python and NumPy.
+          </p>
+          <ul class="lab-details">
+            <li>Synthesized 16-bit PCM equal-temperament audio scales and polyphonic harmonic chords.</li>
+            <li>Analyzed the 279-neuron <i>C. elegans</i> connectome matrix and simulated repairs to damaged interneuron pathways.</li>
+            <li>Applied zero-padded causal rolling filters and Student's $t$-distribution confidence intervals to time series.</li>
+          </ul>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Contact Panel -->
-  <div class="contact-panel" id="contact">
-    <div class="wrap contact-grid">
+  <!-- Contact Section -->
+  <section id="contact" style="border-bottom: none;">
+    <div class="wrap contact-section">
       <div>
-        <h2>Engineering Inquiries &amp; Technical Contacts</h2>
-        <p>Direct academic, laboratory, or technical inquiries regarding RF filter builds, circuit design, and scientific computing.</p>
+        <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">Contact &amp; Information</h2>
+        <p style="font-size: 14px; color: var(--text-light);">University of Washington · Department of Electrical &amp; Computer Engineering</p>
       </div>
-      <ul class="contact-list">
-        <li><span class="k">Institutional Email</span><a href="mailto:kfraz@uw.edu">kfraz@uw.edu</a></li>
-        <li><span class="k">Campus Location</span>University of Washington — Seattle, WA</li>
-        <li><span class="k">Academic Department</span>Electrical &amp; Computer Engineering (ECE)</li>
+      <ul class="contact-links">
+        <li><a href="mailto:kfraz@uw.edu">kfraz@uw.edu</a></li>
+        <li><a href="mailto:kairfrazier@gmail.com">kairfrazier@gmail.com</a></li>
+        <li><a href="https://github.com/kai-frazier" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       </ul>
     </div>
-  </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="wrap footer-bottom">
-      <span>&copy; 2026 Kai Frazier — Department of Electrical &amp; Computer Engineering, University of Washington.</span>
-      <span>Official SF-171 / USWDS Technical Layout</span>
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Kai Frazier.</span>
     </div>
   </footer>
 
