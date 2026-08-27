@@ -302,23 +302,31 @@
     font-size: 11px;
     font-family: var(--mono);
     color: var(--text-muted);
-    padding: 4px 6px;
+    padding: 5px 6px;
     text-align: center;
     background: #ffffff;
     border-top: 1px solid var(--border);
     line-height: 1.3;
   }
 
-  /* Audio Project 2-Image Gallery */
+  /* Audio Project Layout */
   .media-gallery-audio {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    align-items: stretch;
   }
 
-  .media-gallery-audio img {
-    height: 130px;
+  .media-gallery-audio .media-thumb {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .media-gallery-audio .media-thumb img {
+    height: 175px;
     object-fit: contain;
+    padding: 4px;
   }
 
   /* Boost Project 3-Image Stack */
@@ -490,7 +498,7 @@
     text-decoration: none;
     font-weight: 500;
   }
-  .contact-list a:hover { text-decoration: underline; }
+  .contact-links a:hover { text-decoration: underline; }
 
   footer {
     padding: 32px 0;
@@ -527,7 +535,7 @@
   <div class="hero" id="about">
     <div class="wrap">
       <h1>Electrical &amp; Computer Engineering</h1>
-      <p>B.S. Electrical &amp; Computer Engineering student at the <b>University of Washington</b> (Expected March 2028), focusing on RF circuit design, power electronics, analog signal conditioning, and scientific computation. <!--[cite: 2] --> Experienced in electromagnetic simulation, SPICE modeling, and benchtop hardware testing. <!--[cite: 1, 2] --></p>
+      <p>B.S. Electrical &amp; Computer Engineering student at the <b>University of Washington</b> (Expected March 2028), focusing on RF circuit design, power electronics, analog signal conditioning, and scientific computation. Experienced in electromagnetic simulation, SPICE modeling, and benchtop hardware testing.</p>
       <div class="hero-links">
         <a href="#projects">View Projects &rarr;</a>
         <a href="#labs">Lab &amp; Measurement Reports &rarr;</a>
@@ -539,41 +547,41 @@
         <div class="skill-group">
           <h3>RF &amp; Electromagnetics</h3>
           <ul>
-            <li>Microstrip Hairpin Filters <!--[cite: 1] --></li>
-            <li>Coupled Line Synthesis <!--[cite: 1] --></li>
-            <li>$J$-Inverter Transformations <!--[cite: 1] --></li>
-            <li>Ansys HFSS / AEDT <!--[cite: 2] --></li>
-            <li>Vector Network Analyzers (VNA) <!--[cite: 2] --></li>
+            <li>Microstrip Hairpin Filters</li>
+            <li>Coupled Line Synthesis</li>
+            <li>$J$-Inverter Transformations</li>
+            <li>Ansys HFSS / AEDT</li>
+            <li>Vector Network Analyzers (VNA)</li>
           </ul>
         </div>
         <div class="skill-group">
           <h3>Analog &amp; Power</h3>
           <ul>
-            <li>Step-Up Boost Converters <!--[cite: 1, 7] --></li>
-            <li>Linear &amp; Zener Regulation <!--[cite: 1, 2] --></li>
-            <li>Full-Wave AC-DC Rectification <!--[cite: 1, 7] --></li>
-            <li>Active Op-Amp Filter Design <!--[cite: 1, 5] --></li>
-            <li>Mixed-Signal PCB Layout <!--[cite: 2] --></li>
+            <li>Step-Up Boost Converters</li>
+            <li>Linear &amp; Zener Regulation</li>
+            <li>Full-Wave AC-DC Rectification</li>
+            <li>Active Op-Amp Filter Design</li>
+            <li>Mixed-Signal PCB Layout</li>
           </ul>
         </div>
         <div class="skill-group">
           <h3>Software &amp; Tools</h3>
           <ul>
-            <li>Fortran 90/95 <!--[cite: 2] --></li>
-            <li>Python (NumPy / SciPy) <!--[cite: 1, 2] --></li>
-            <li>LTspice (.tran / .ac / .dc) <!--[cite: 1] --></li>
-            <li>SMath Studio <!--[cite: 1, 2] --></li>
-            <li>Git &amp; GitHub Version Control <!--[cite: 2] --></li>
+            <li>Fortran 90/95</li>
+            <li>Python (NumPy / SciPy)</li>
+            <li>LTspice (.tran / .ac / .dc)</li>
+            <li>SMath Studio</li>
+            <li>Git &amp; GitHub Version Control</li>
           </ul>
         </div>
         <div class="skill-group">
           <h3>Instrumentation</h3>
           <ul>
-            <li>Digital Storage Oscilloscopes <!--[cite: 1, 2] --></li>
-            <li>Arbitrary Function Generators <!--[cite: 1, 2] --></li>
-            <li>X-Y Mode VTC Characterization <!--[cite: 1] --></li>
-            <li>6½-Digit Bench DMMs <!--[cite: 1, 2] --></li>
-            <li>SMD / Through-Hole Soldering <!--[cite: 2] --></li>
+            <li>Digital Storage Oscilloscopes</li>
+            <li>Arbitrary Function Generators</li>
+            <li>X-Y Mode VTC Characterization</li>
+            <li>6½-Digit Bench DMMs</li>
+            <li>SMD / Through-Hole Soldering</li>
           </ul>
         </div>
       </div>
@@ -597,10 +605,10 @@
             <span class="status-tag ongoing">Ongoing</span>
           </div>
           <p class="project-desc">
-            Synthesized and simulated a 4th-order Chebyshev bandpass filter centered at 1090 MHz with a 45 MHz passband ($FBW = 4.13\%$) for ADS-B signal reception. <!--[cite: 1] --> Derived prototype $g_i$ values, admittance inverters ($J_{01}/Y_0 = 0.2419$, $J_{12}/Y_0 = 0.0448$), and even/odd mode impedances ($Z_{0e}, Z_{0o}$). <!--[cite: 1] --> Folded $\lambda/2$ resonators into U-shaped hairpins to cut board area by $>50\%$ and implemented direct $50\ \Omega$ tapped-line feeds to achieve return loss $S_{11} < -15\text{ dB}$. <!--[cite: 1] -->
+            Synthesized and simulated a 4th-order Chebyshev bandpass filter centered at 1090 MHz with a 45 MHz passband ($FBW = 4.13\%$) for ADS-B signal reception. Derived prototype $g_i$ values, admittance inverters ($J_{01}/Y_0 = 0.2419$, $J_{12}/Y_0 = 0.0448$), and even/odd mode impedances ($Z_{0e}, Z_{0o}$). Folded $\lambda/2$ resonators into U-shaped hairpins to cut board area by $>50\%$ and implemented direct $50\ \Omega$ tapped-line feeds to achieve return loss $S_{11} < -15\text{ dB}$.
           </p>
           <div class="project-specs">
-            <b>Specifications:</b> FR-4 Substrate ($\epsilon_r = 4.4$, $H = 1.524\text{ mm}$, $\tan\delta = 0.015$) | Stopband Rejection $\ge 30\text{ dB}$ at 1170 MHz | Trace Gap $S \ge 8.38\text{ mil}$ <!--[cite: 1] -->
+            <b>Specifications:</b> FR-4 Substrate ($\epsilon_r = 4.4$, $H = 1.524\text{ mm}$, $\tan\delta = 0.015$) | Stopband Rejection $\ge 30\text{ dB}$ at 1170 MHz | Trace Gap $S \ge 8.38\text{ mil}$
           </div>
           <div class="tags">
             <span>Ansys HFSS</span>
@@ -620,10 +628,10 @@
                 <span class="status-tag completed">Completed</span>
               </div>
               <p class="project-desc">
-                Constructed a two-stage power supply converting $\pm 7.5\text{ VAC}$ ($10\text{ V}_{\text{peak}}$, 60 Hz) into an intermediate $+10.0\text{ VDC}$ rail via a 1N4007 full-wave bridge rectifier and capacitive filter. <!--[cite: 7] --> Stepped up voltage from $+9.25\text{ VDC}$ to $+18.65\text{ VDC}$ using an inductive Continuous Conduction Mode (CCM) boost topology ($V_{\text{out}} = V_{\text{in}} / (1 - D)$) driven by a 555-timer clock, with potentiometer duty-cycle control and output ripple verified under $72\text{ mV}_{\text{p-p}}$ across the full range. <!--[cite: 7] -->
+                Constructed a two-stage power supply converting $\pm 7.5\text{ VAC}$ ($10.6\text{ V}_{\text{peak}}$, 60 Hz) into an intermediate $+10.0\text{ VDC}$ rail via a center-tapped full-wave rectifier ($2\times\text{1N4007}$) and bulk capacitive filter. Stepped up voltage from $+9.25\text{ VDC}$ to $+18.65\text{ VDC}$ using an inductive Continuous Conduction Mode (CCM) boost topology ($V_{\text{out}} = V_{\text{in}} / (1 - D)$) driven by a 555-timer astable clock. Integrated an adjustable output Zener shunt network ($2\times\text{1N4732A} + R_6\text{ potentiometer}$) alongside a fixed $19.7\text{ V}$ overvoltage protection clamp ($\text{1N4744A} + \text{1N4732A}$), maintaining output ripple under $72\text{ mV}_{\text{p-p}}$ across the load range.
               </p>
               <div class="project-specs">
-                <b>Verified Bench Data:</b> $+9.25\text{ V}$ to $+18.65\text{ V}$ DC Tuning Range | $65.0 - 71.6\text{ mV}$ Ripple (Spec: $<100\text{ mV}$) | CCM Inductive Switching <!--[cite: 7] -->
+                <b>Verified Bench Data:</b> $+9.25\text{ V}$ to $+18.65\text{ V}$ DC Tuning Range | $65.0 - 71.6\text{ mV}$ Ripple (Spec: $<100\text{ mV}$) | Center-Tapped Full-Wave Rectifier + CCM Boost
               </div>
               <div class="tags">
                 <span>Power Electronics</span>
@@ -637,7 +645,7 @@
             <div class="media-gallery-boost">
               <figure class="media-thumb full-width">
                 <img src="images/boost-schematic.png" alt="Complete AC-DC Boost Converter Circuit Schematic" loading="lazy">
-                <figcaption>Circuit Schematic <!--[cite: 7] --></figcaption>
+                <figcaption>Circuit Schematic</figcaption>
               </figure>
               <div class="scope-pair">
                 <figure class="media-thumb">
@@ -662,10 +670,10 @@
                 <span class="status-tag completed">Completed</span>
               </div>
               <p class="project-desc">
-                Engineered an analog audio processing console handling two line-level inputs and one electret condenser microphone channel. <!--[cite: 5] --> Includes an active low-noise preamplifier with DC blocking ($1\ \mu\text{F}$) and high-frequency noise attenuation, feeding into a 3-channel virtual-ground inverting summing amplifier. <!--[cite: 5] --> A unity-gain buffer isolates the mixer from a parallel active 1st-order Bass, Midrange, and Treble filter bank before driving a low-impedance speaker output stage. <!--[cite: 5] -->
+                Engineered an analog audio processing console handling two line-level inputs and one electret condenser microphone channel. Includes an active low-noise preamplifier with DC blocking ($1\ \mu\text{F}$) and high-frequency noise attenuation, feeding into a 3-channel virtual-ground inverting summing amplifier. A unity-gain buffer isolates the mixer from a parallel active 1st-order Bass, Midrange, and Treble filter bank before driving a low-impedance speaker output stage.
               </p>
               <div class="project-specs">
-                <b>Specifications:</b> $\pm 15\text{ V}$ Rails | Active Op-Amp Equalizer (250 Hz, 1 kHz, 4 kHz center frequencies) | Dual-Channel DSO Verification <!--[cite: 5] -->
+                <b>Specifications:</b> $\pm 15\text{ V}$ Dual Rails | Active Op-Amp Equalizer (250 Hz, 1 kHz, 4 kHz center frequencies) | Dual-Channel DSO Verification
               </div>
               <div class="tags">
                 <span>Analog Design</span>
@@ -675,15 +683,15 @@
               </div>
             </div>
 
-            <!-- 2-Image Media Column -->
+            <!-- 2-Image Media Column (Optimized for Composite Waveform) -->
             <div class="media-gallery-audio">
               <figure class="media-thumb">
                 <img src="images/audio-schematic.png" alt="Active Variable Band-Pass / Band-Stop Filter Schematic" loading="lazy">
-                <figcaption>Active Filter Topology <!--[cite: 5] --></figcaption>
+                <figcaption>Active Filter Topology</figcaption>
               </figure>
               <figure class="media-thumb">
                 <img src="images/audio-waveform.png" alt="Keysight DSO Dual-Channel Input vs Output Waveform" loading="lazy">
-                <figcaption>Input vs. Output Trace <!--[cite: 5] --></figcaption>
+                <figcaption>Input vs. Filtered Output</figcaption>
               </figure>
             </div>
           </div>
@@ -696,10 +704,10 @@
             <span class="status-tag completed">Completed</span>
           </div>
           <p class="project-desc">
-            Executed full schematic capture and physical trace routing for a mixed-signal printed circuit board adhering to standard PCB design rules and fabrication constraints. <!--[cite: 2] --> Populated circuit boards using precision through-hole and surface-mount (SMD) soldering techniques, validating board-level signal integrity, power distribution, and functional timing with bench oscilloscopes, multimeters, and function generators. <!--[cite: 2] -->
+            Executed full schematic capture and physical trace routing for a mixed-signal printed circuit board adhering to standard PCB design rules and fabrication constraints. Populated circuit boards using precision through-hole and surface-mount (SMD) soldering techniques, validating board-level signal integrity, power distribution, and functional timing with bench oscilloscopes, multimeters, and function generators.
           </p>
           <div class="project-specs">
-            <b>Scope:</b> Schematic Capture &amp; Layout | SMD / Through-Hole Assembly | Board Bring-Up &amp; Signal Integrity Validation <!--[cite: 2] -->
+            <b>Scope:</b> Schematic Capture &amp; Layout | SMD / Through-Hole Assembly | Board Bring-Up &amp; Signal Integrity Validation
           </div>
           <div class="tags">
             <span>PCB Layout</span>
@@ -716,7 +724,7 @@
             <span class="status-tag ongoing">Ongoing</span>
           </div>
           <p class="project-desc">
-            Developed compiled Fortran 90/95 routines and SMath symbolic worksheets to execute matrix transformations, Chebyshev prototype polynomial evaluations, and microstrip impedance transformations. <!--[cite: 1] --> Automated analytical solving of electrical lengths ($\lambda_g / 4$), odd/even characteristic impedances ($Z_{0e}, Z_{0o}$), and physical microstrip line dimensions ($W/H, S/H$). <!--[cite: 1] -->
+            Developed compiled Fortran 90/95 routines and SMath symbolic worksheets to execute matrix transformations, Chebyshev prototype polynomial evaluations, and microstrip impedance transformations. Automated analytical solving of electrical lengths ($\lambda_g / 4$), odd/even characteristic impedances ($Z_{0e}, Z_{0o}$), and physical microstrip line dimensions ($W/H, S/H$).
           </p>
           <div class="tags">
             <span>Fortran 90/95</span>
@@ -740,16 +748,17 @@
 
       <div class="labs-grid">
 
-        <!-- Lab 1: EE 331 Semiconductor Physics -->
+        <!-- Lab 1: EE 331 Semiconductor Physics & Non-Linear Waveshaping -->
         <div class="lab-card">
           <div class="lab-code">UW EE 331</div>
           <h3 class="lab-title">Semiconductor Physics &amp; Non-Linear Wave-Shaping</h3>
           <p>
-            Characterized forward conduction and minority-carrier reverse leakage across silicon rectifiers (1N4007), fast-switching diodes (1N4148), and Schottky diodes (1N5819) over five decades of current ($1\ \mu\text{A}$ to $10\text{ mA}$). <!--[cite: 1] --> Extracted ideality factors ($\eta$) and mapped dynamic Voltage Transfer Characteristics (VTC) in oscilloscope X-Y mode. <!--[cite: 1] -->
+            Characterized forward conduction and minority-carrier reverse leakage across silicon rectifiers (1N4007), fast-switching diodes (1N4148), and Schottky diodes (1N5819) over five decades of current ($1\ \mu\text{A}$ to $10\text{ mA}$). Extracted ideality factors ($\eta$) and mapped dynamic Voltage Transfer Characteristics (VTC) in oscilloscope X-Y mode.
           </p>
           <ul class="lab-details">
-            <li>Built symmetric ($\pm 0.7\text{ V}$, $\pm 1.4\text{ V}$) and asymmetric Zener overvoltage limiters. <!--[cite: 1] --></li>
-            <li>Extracted dynamic Zener breakdown resistance ($R_z$) and forward resistance ($R_f$) in LTspice. <!--[cite: 1] --></li>
+            <li><b>Biased Peak Clippers:</b> Implemented 4-quadrant diode clipping networks adjusting positive/negative slicing thresholds via DC reference bias ($V_{BB}$).</li>
+            <li><b>Overvoltage Limiters:</b> Built symmetric ($\pm 0.7\text{ V}$, $\pm 1.4\text{ V}$), asymmetric Zener ($-0.7\text{ V}$ to $+4.7\text{ V}$), and custom $-9.4\text{ V}$ to $+2.0\text{ V}$ multi-stage protection limiters.</li>
+            <li><b>SPICE Extraction:</b> Modeled dynamic breakdown resistance ($R_z = \Delta V_Z / \Delta I_Z$) and forward dynamic resistance ($R_f$) in LTspice.</li>
           </ul>
         </div>
 
@@ -758,38 +767,40 @@
           <div class="lab-code">UW EE 331</div>
           <h3 class="lab-title">AC-DC Rectification, Smoothing &amp; Zener Regulation</h3>
           <p>
-            Evaluated half-wave and full-wave bridge rectifier circuits driven by $10\text{ V}_{\text{peak}}$ AC transformer inputs. <!--[cite: 1] --> Quantified exponential filter discharge dynamics ($V(t) = (V_p - V_{\text{on}})e^{-t/RC}$) and ripple doubling effects ($2f_{\text{in}} = 120\text{ Hz}$). <!--[cite: 1] -->
+            Evaluated half-wave and full-wave bridge rectifier circuits driven by $10\text{ V}_{\text{peak}}$ AC transformer inputs. Quantified exponential filter discharge dynamics ($V(t) = (V_p - V_{\text{on}})e^{-t/RC}$) and ripple doubling effects ($2f_{\text{in}} = 120\text{ Hz}$).
           </p>
           <ul class="lab-details">
-            <li>Benchmarked line and load regulation with a 1N4732 ($4.7\text{ V}$) Zener diode stage. <!--[cite: 1] --></li>
-            <li>Modeled regulator drop-out thresholds where load pulls current below knee current ($I_Z < I_{ZK}$). <!--[cite: 1] --></li>
+            <li><b>Ripple Optimization:</b> Measured fundamental ripple frequency doubling, reducing capacitor discharge interval by $\approx 50\%$ relative to half-wave rectification.</li>
+            <li><b>Shunt Zener Regulator:</b> Characterized line and load regulation figures of merit ($\text{mV/mA}$, $\text{mV/V}$) with a 1N4732 ($4.7\text{ V}$) stage across variable loads ($470\ \Omega$ to $10\text{ k}\Omega$).</li>
+            <li><b>Dropout Modeling:</b> Evaluated regulator collapse thresholds where heavy load currents pull reverse Zener currents below knee current ($I_Z < I_{ZK}$).</li>
           </ul>
         </div>
 
         <!-- Lab 3: ECE 233 Transient & Op-Amp Dynamics -->
         <div class="lab-card">
           <div class="lab-code">UW ECE 233</div>
-          <h3 class="lab-title">Transient RC Response &amp; Op-Amp Bandwidth</h3>
+          <h3 class="lab-title">Transient RC Response, Slew Rates &amp; Active Integrators</h3>
           <p>
-            Measured transient step responses of first-order RC networks on digital storage oscilloscopes, validating rise time ($t_r \approx 2.197RC$) and propagation delay ($t_{pd} \approx 0.693RC$) against theoretical derivations. <!--[cite: 1] -->
+            Measured transient step responses of first-order RC networks on digital storage oscilloscopes, validating rise time ($t_r \approx 2.197RC$) and propagation delay ($t_{pd} \approx 0.693RC$) against theoretical derivations.
           </p>
           <ul class="lab-details">
-            <li>Measured large-signal slew rate limits ($SR = |dV/dt|_{\max}$) across $-10\text{ V}$ to $+10\text{ V}$ transitions. <!--[cite: 1] --></li>
-            <li>Constructed shunt-stabilized integrators ($R_2 \parallel C_f$) to prevent DC offset rail saturation ($\pm 12\text{ V}$). <!--[cite: 1] --></li>
+            <li><b>Slew Rate Limits:</b> Measured large-signal rate-of-change boundaries ($SR = |dV_{\text{out}}/dt|_{\max}$) across $-10\text{ V}$ to $+10\text{ V}$ step transitions to prevent triangular distortion.</li>
+            <li><b>Active Integrators &amp; Differentiators:</b> Built shunt-stabilized integrators ($R_2 \parallel C_f$) eliminating open-loop DC offset rail saturation ($\pm 12\text{ V}$).</li>
+            <li><b>Active Summing Bus:</b> Implemented 3-channel inverting summing bus with parallel feedback low-pass filtering and channel attenuation potentiometers.</li>
           </ul>
         </div>
 
-        <!-- Lab 4: ECE 241 DSP & Graph Theory -->
+        <!-- Lab 4: ECE 241 DSP, Computer Vision & Graph Connectomics -->
         <div class="lab-card">
           <div class="lab-code">UW ECE 241</div>
-          <h3 class="lab-title">Vectorized DSP, Image Processing &amp; Graph Connectomics</h3>
+          <h3 class="lab-title">Vectorized DSP, Image Transformations &amp; Connectomics</h3>
           <p>
-            Implemented vectorized signal synthesis, multi-dimensional tensor operations, and digital image processing algorithms in Python and NumPy. <!--[cite: 1] -->
+            Implemented scientific computing pipelines in Python, NumPy, SciPy, and Matplotlib for digital audio synthesis, image transformations, and biological graph modeling.
           </p>
           <ul class="lab-details">
-            <li>Synthesized 16-bit PCM equal-temperament audio scales and polyphonic harmonic chords. <!--[cite: 1] --></li>
-            <li>Analyzed the 279-neuron <i>C. elegans</i> connectome matrix and simulated repairs to damaged interneuron pathways. <!--[cite: 1] --></li>
-            <li>Applied zero-padded causal rolling filters and Student's $t$-distribution confidence intervals to time series. <!--[cite: 1] --></li>
+            <li><b>Audio Synthesis:</b> Synthesized 16-bit PCM equal-temperament scale frequencies and polyphonic multi-tone chords ($A+C\#$, $B+D$, etc.).</li>
+            <li><b>Image Processing:</b> Implemented segment block-averaging downsampling, luminance threshold masks, alpha image blending, and 2D Gaussian surface modeling ($vis\_2d\_gaussian$).</li>
+            <li><b>Neural Connectomics &amp; Data:</b> Parsed the 279-neuron <i>C. elegans</i> synaptic connectome matrix to simulate interneuron path repairs, and built moving-window causal filters for time series.</li>
           </ul>
         </div>
 
@@ -807,7 +818,7 @@
       <ul class="contact-list">
         <li>
           <span class="label">Personal (Preferred):</span>
-          <a href="mailto:kairfrazier@gmail.com">kairfrazier@gmail.com</a> <!--[cite: 2] -->
+          <a href="mailto:kairfrazier@gmail.com">kairfrazier@gmail.com</a>
         </li>
         <li>
           <span class="label">School Email:</span>
