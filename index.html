@@ -238,6 +238,13 @@
     color: var(--text-main);
   }
 
+  .tag-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
   .status-tag {
     font-size: 11px;
     font-family: var(--mono);
@@ -251,6 +258,19 @@
 
   .status-tag.ongoing { background: #e0f2fe; color: #0369a1; }
   .status-tag.completed { background: #f1f5f9; color: #475569; }
+
+  .team-tag {
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #f8fafc;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
 
   .project-desc {
     font-size: 14px;
@@ -418,12 +438,18 @@
     background: var(--bg-card);
   }
 
+  .lab-code-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
   .lab-code {
     font-family: var(--mono);
     font-size: 12px;
     color: var(--accent);
     font-weight: 600;
-    margin-bottom: 4px;
   }
 
   .lab-title {
@@ -498,7 +524,7 @@
     text-decoration: none;
     font-weight: 500;
   }
-  .contact-links a:hover { text-decoration: underline; }
+  .contact-list a:hover { text-decoration: underline; }
 
   footer {
     padding: 32px 0;
@@ -598,11 +624,13 @@
 
       <div class="projects-list">
 
-        <!-- Project 1: Hairpin Bandpass Filter -->
+        <!-- Project 1: Hairpin Bandpass Filter (Solo) -->
         <div class="project-card">
           <div class="card-top">
             <h3 class="card-title">1090 MHz 4th-Order Chebyshev Microstrip Hairpin Filter</h3>
-            <span class="status-tag ongoing">Ongoing</span>
+            <div class="tag-group">
+              <span class="status-tag ongoing">Ongoing</span>
+            </div>
           </div>
           <p class="project-desc">
             Synthesized and simulated a 4th-order Chebyshev bandpass filter centered at 1090 MHz with a 45 MHz passband ($FBW = 4.13\%$) for ADS-B signal reception. Derived prototype $g_i$ values, admittance inverters ($J_{01}/Y_0 = 0.2419$, $J_{12}/Y_0 = 0.0448$), and even/odd mode impedances ($Z_{0e}, Z_{0o}$). Folded $\lambda/2$ resonators into U-shaped hairpins to cut board area by $>50\%$ and implemented direct $50\ \Omega$ tapped-line feeds to achieve return loss $S_{11} < -15\text{ dB}$.
@@ -619,19 +647,22 @@
           </div>
         </div>
 
-        <!-- Project 2: AC-DC Boost Converter (3-Image Layout) -->
+        <!-- Project 2: AC-DC Boost Converter (Team) -->
         <div class="project-card">
           <div class="project-layout">
             <div>
               <div class="card-top">
                 <h3 class="card-title">AC-to-DC Power Supply &amp; Step-Up Boost Converter</h3>
-                <span class="status-tag completed">Completed</span>
+                <div class="tag-group">
+                  <span class="team-tag">3-Person Team</span>
+                  <span class="status-tag completed">Completed</span>
+                </div>
               </div>
               <p class="project-desc">
-                Constructed a two-stage power supply converting $\pm 7.5\text{ VAC}$ ($10.6\text{ V}_{\text{peak}}$, 60 Hz) into an intermediate $+10.0\text{ VDC}$ rail via a center-tapped full-wave rectifier ($2\times\text{1N4007}$) and bulk capacitive filter. Stepped up voltage from $+9.25\text{ VDC}$ to $+18.65\text{ VDC}$ using an inductive Continuous Conduction Mode (CCM) boost topology ($V_{\text{out}} = V_{\text{in}} / (1 - D)$) driven by a 555-timer astable clock. Integrated an adjustable output Zener shunt network ($2\times\text{1N4732A} + R_6\text{ potentiometer}$) alongside a fixed $19.7\text{ V}$ overvoltage protection clamp ($\text{1N4744A} + \text{1N4732A}$), maintaining output ripple under $72\text{ mV}_{\text{p-p}}$ across the load range.
+                Constructed a two-stage power supply converting $\pm 7.5\text{ VAC}$ ($10.6\text{ V}_{\text{peak}}$, 60 Hz) into an intermediate $+10.0\text{ VDC}$ rail via a center-tapped full-wave rectifier ($2\times\text{1N4007}$) and bulk capacitive filter. Stepped up DC voltage using an inductive Continuous Conduction Mode (CCM) boost topology ($V_{\text{out}} = V_{\text{in}} / (1 - D)$) driven by a 555-timer astable clock. Output voltage is tuned across the load range via a potentiometer-controlled Zener shunt network ($2\times\text{1N4732A} + R_6$) paired with a fixed $19.7\text{ V}$ overvoltage clamp ($\text{1N4744A} + \text{1N4732A}$). Bench testing verified an initial range of $+9.25\text{ V}$ to $+18.65\text{ VDC}$ with ripple under $72\text{ mV}_{\text{p-p}}$; subsequent circuit optimization extended the range closer to the $10\text{–}20\text{ V}$ design target, with low-end ripple tradeoffs ($474\text{ mV}$) documented from breadboard parasitics and component tolerances.
               </p>
               <div class="project-specs">
-                <b>Verified Bench Data:</b> $+9.25\text{ V}$ to $+18.65\text{ V}$ DC Tuning Range | $65.0 - 71.6\text{ mV}$ Ripple (Spec: $<100\text{ mV}$) | Center-Tapped Full-Wave Rectifier + CCM Boost
+                <b>Verified Bench Data:</b> $+9.25\text{ V}$ to $+18.65\text{ V}$ Verified Range | $65.0 - 71.6\text{ mV}$ Initial Ripple (Spec: $<100\text{ mV}$) | Center-Tapped Rectifier + Shunt Zener Regulation
               </div>
               <div class="tags">
                 <span>Power Electronics</span>
@@ -661,13 +692,16 @@
           </div>
         </div>
 
-        <!-- Project 3: Audio Mixer & Equalizer (2-Image Layout) -->
+        <!-- Project 3: Audio Mixer & Equalizer (Team) -->
         <div class="project-card">
           <div class="project-layout">
             <div>
               <div class="card-top">
                 <h3 class="card-title">3-Channel Analog Audio Mixing Console &amp; Multi-Band Equalizer</h3>
-                <span class="status-tag completed">Completed</span>
+                <div class="tag-group">
+                  <span class="team-tag">3-Person Team</span>
+                  <span class="status-tag completed">Completed</span>
+                </div>
               </div>
               <p class="project-desc">
                 Engineered an analog audio processing console handling two line-level inputs and one electret condenser microphone channel. Includes an active low-noise preamplifier with DC blocking ($1\ \mu\text{F}$) and high-frequency noise attenuation, feeding into a 3-channel virtual-ground inverting summing amplifier. A unity-gain buffer isolates the mixer from a parallel active 1st-order Bass, Midrange, and Treble filter bank before driving a low-impedance speaker output stage.
@@ -683,7 +717,7 @@
               </div>
             </div>
 
-            <!-- 2-Image Media Column (Optimized for Composite Waveform) -->
+            <!-- 2-Image Media Column -->
             <div class="media-gallery-audio">
               <figure class="media-thumb">
                 <img src="images/audio-schematic.png" alt="Active Variable Band-Pass / Band-Stop Filter Schematic" loading="lazy">
@@ -697,11 +731,14 @@
           </div>
         </div>
 
-        <!-- Project 4: Custom Mixed-Signal PCB Prototype -->
+        <!-- Project 4: Custom Mixed-Signal PCB Prototype (Team) -->
         <div class="project-card">
           <div class="card-top">
             <h3 class="card-title">Custom Mixed-Signal PCB Prototype (EE 201)</h3>
-            <span class="status-tag completed">Completed</span>
+            <div class="tag-group">
+              <span class="team-tag">3-Person Team</span>
+              <span class="status-tag completed">Completed</span>
+            </div>
           </div>
           <p class="project-desc">
             Executed full schematic capture and physical trace routing for a mixed-signal printed circuit board adhering to standard PCB design rules and fabrication constraints. Populated circuit boards using precision through-hole and surface-mount (SMD) soldering techniques, validating board-level signal integrity, power distribution, and functional timing with bench oscilloscopes, multimeters, and function generators.
@@ -717,11 +754,14 @@
           </div>
         </div>
 
-        <!-- Project 5: Scientific Numerical Computation Engine -->
+        <!-- Project 5: Scientific Numerical Computation Engine (Team) -->
         <div class="project-card">
           <div class="card-top">
             <h3 class="card-title">Fortran &amp; SMath Numerical Computation Pipelines</h3>
-            <span class="status-tag ongoing">Ongoing</span>
+            <div class="tag-group">
+              <span class="team-tag">3-Person Team</span>
+              <span class="status-tag ongoing">Ongoing</span>
+            </div>
           </div>
           <p class="project-desc">
             Developed compiled Fortran 90/95 routines and SMath symbolic worksheets to execute matrix transformations, Chebyshev prototype polynomial evaluations, and microstrip impedance transformations. Automated analytical solving of electrical lengths ($\lambda_g / 4$), odd/even characteristic impedances ($Z_{0e}, Z_{0o}$), and physical microstrip line dimensions ($W/H, S/H$).
@@ -748,9 +788,12 @@
 
       <div class="labs-grid">
 
-        <!-- Lab 1: EE 331 Semiconductor Physics & Non-Linear Waveshaping -->
+        <!-- Lab 1: EE 331 Semiconductor Physics & Non-Linear Waveshaping (Team) -->
         <div class="lab-card">
-          <div class="lab-code">UW EE 331</div>
+          <div class="lab-code-row">
+            <span class="lab-code">UW EE 331</span>
+            <span class="team-tag">3-Person Team</span>
+          </div>
           <h3 class="lab-title">Semiconductor Physics &amp; Non-Linear Wave-Shaping</h3>
           <p>
             Characterized forward conduction and minority-carrier reverse leakage across silicon rectifiers (1N4007), fast-switching diodes (1N4148), and Schottky diodes (1N5819) over five decades of current ($1\ \mu\text{A}$ to $10\text{ mA}$). Extracted ideality factors ($\eta$) and mapped dynamic Voltage Transfer Characteristics (VTC) in oscilloscope X-Y mode.
@@ -762,9 +805,12 @@
           </ul>
         </div>
 
-        <!-- Lab 2: EE 331 Rectification & Regulation -->
+        <!-- Lab 2: EE 331 Rectification & Regulation (Team) -->
         <div class="lab-card">
-          <div class="lab-code">UW EE 331</div>
+          <div class="lab-code-row">
+            <span class="lab-code">UW EE 331</span>
+            <span class="team-tag">3-Person Team</span>
+          </div>
           <h3 class="lab-title">AC-DC Rectification, Smoothing &amp; Zener Regulation</h3>
           <p>
             Evaluated half-wave and full-wave bridge rectifier circuits driven by $10\text{ V}_{\text{peak}}$ AC transformer inputs. Quantified exponential filter discharge dynamics ($V(t) = (V_p - V_{\text{on}})e^{-t/RC}$) and ripple doubling effects ($2f_{\text{in}} = 120\text{ Hz}$).
@@ -776,9 +822,12 @@
           </ul>
         </div>
 
-        <!-- Lab 3: ECE 233 Transient & Op-Amp Dynamics -->
+        <!-- Lab 3: ECE 233 Transient & Op-Amp Dynamics (Team) -->
         <div class="lab-card">
-          <div class="lab-code">UW ECE 233</div>
+          <div class="lab-code-row">
+            <span class="lab-code">UW ECE 233</span>
+            <span class="team-tag">3-Person Team</span>
+          </div>
           <h3 class="lab-title">Transient RC Response, Slew Rates &amp; Active Integrators</h3>
           <p>
             Measured transient step responses of first-order RC networks on digital storage oscilloscopes, validating rise time ($t_r \approx 2.197RC$) and propagation delay ($t_{pd} \approx 0.693RC$) against theoretical derivations.
@@ -790,9 +839,12 @@
           </ul>
         </div>
 
-        <!-- Lab 4: ECE 241 DSP, Computer Vision & Graph Connectomics -->
+        <!-- Lab 4: ECE 241 DSP, Computer Vision & Graph Connectomics (Team) -->
         <div class="lab-card">
-          <div class="lab-code">UW ECE 241</div>
+          <div class="lab-code-row">
+            <span class="lab-code">UW ECE 241</span>
+            <span class="team-tag">3-Person Team</span>
+          </div>
           <h3 class="lab-title">Vectorized DSP, Image Transformations &amp; Connectomics</h3>
           <p>
             Implemented scientific computing pipelines in Python, NumPy, SciPy, and Matplotlib for digital audio synthesis, image transformations, and biological graph modeling.
