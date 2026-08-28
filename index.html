@@ -329,10 +329,10 @@
     line-height: 1.3;
   }
 
-  /* Audio Project Layout */
+  /* Audio Project Layout (3-Image Row) */
   .media-gallery-audio {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     align-items: stretch;
   }
@@ -344,7 +344,7 @@
   }
 
   .media-gallery-audio .media-thumb img {
-    height: 175px;
+    height: 140px;
     object-fit: contain;
     padding: 4px;
   }
@@ -536,6 +536,7 @@
     .wrap { padding: 0 16px; }
     .project-card { padding: 18px 16px; }
     .lab-card { padding: 16px; }
+    .media-gallery-audio { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -704,10 +705,10 @@
                 </div>
               </div>
               <p class="project-desc">
-                Engineered an analog audio processing console handling two line-level inputs and one electret condenser microphone channel. Includes an active low-noise preamplifier with DC blocking ($1\ \mu\text{F}$) and high-frequency noise attenuation, feeding into a 3-channel virtual-ground inverting summing amplifier. A unity-gain buffer isolates the mixer from a parallel active 1st-order Bass, Midrange, and Treble filter bank before driving a low-impedance speaker output stage.
+                Engineered an analog audio processing console handling two line-level inputs and one electret condenser microphone channel. Includes an active low-noise preamplifier with DC blocking ($1\ \mu\text{F}$) and high-frequency noise attenuation, feeding into a 3-channel virtual-ground inverting summing amplifier. A unity-gain buffer isolates the mixer from an equalizer stage utilizing a reconfigurable 2nd-order active filter topology (built around $R_1\text{–}R_5$, $C_1$, $C_2$, and a single op-amp) instantiated three times at different center frequencies (250 Hz, 1 kHz, and 4 kHz) via selected capacitor values. A single potentiometer on each stage controls filter character: below ~50% it behaves as a band-pass, at ~50% it flattens to an all-pass, and above ~50% it becomes a band-stop (notch) filter before summing into an output speaker stage.
               </p>
               <div class="project-specs">
-                <b>Specifications:</b> $\pm 15\text{ V}$ Dual Rails | Active Op-Amp Equalizer (250 Hz, 1 kHz, 4 kHz center frequencies) | Dual-Channel DSO Verification
+                <b>Verified Bench Data:</b> $\pm 15\text{ V}$ Dual Rails | Center Frequencies: 250 Hz, 1 kHz, 4 kHz | Max gain ranged from approximately +9 dB (band-pass, 250 Hz stage) to &minus;7.9 dB (band-stop, 1 kHz stage) across the three bands, with 3-dB bandwidths varying by potentiometer position (e.g., 70 Hz–2 kHz at 25% pot on the 250 Hz stage) | LM348N Active Equalizer
               </div>
               <div class="tags">
                 <span>Analog Design</span>
@@ -717,7 +718,7 @@
               </div>
             </div>
 
-            <!-- 2-Image Media Column -->
+            <!-- 3-Image Media Column -->
             <div class="media-gallery-audio">
               <figure class="media-thumb">
                 <img src="images/audio-schematic.png" alt="Active Variable Band-Pass / Band-Stop Filter Schematic" loading="lazy">
@@ -726,6 +727,10 @@
               <figure class="media-thumb">
                 <img src="images/audio-waveform.png" alt="Keysight DSO Dual-Channel Input vs Output Waveform" loading="lazy">
                 <figcaption>Input vs. Filtered Output</figcaption>
+              </figure>
+              <figure class="media-thumb">
+                <img src="images/audio-bode-mixer-gain.png" alt="Measured Bode Plot — Full Mixer Gain Response" loading="lazy">
+                <figcaption>Measured Bode Plot — Full Mixer Gain (2 Pass-Bands + Stop-Band)</figcaption>
               </figure>
             </div>
           </div>
