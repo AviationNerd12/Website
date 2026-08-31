@@ -736,26 +736,61 @@
           </div>
         </div>
 
-        <!-- Project 4: Custom Mixed-Signal PCB Prototype (Team) -->
+        <!-- Project 4: PID Line-Following Robot & Mixed-Signal PCB (EE 201) -->
         <div class="project-card">
-          <div class="card-top">
-            <h3 class="card-title">Custom Mixed-Signal PCB Prototype (EE 201)</h3>
-            <div class="tag-group">
-              <span class="team-tag">3-Person Team</span>
-              <span class="status-tag completed">Completed</span>
+          <div class="project-layout">
+            <div>
+              <div class="card-top">
+                <h3 class="card-title">Autonomous PID Line-Following Robot &amp; Custom Sensor PCB</h3>
+                <div class="tag-group">
+                  <span class="team-tag">3-Person Team (Led CAD &amp; PCB)</span>
+                  <span class="status-tag completed">Completed</span>
+                </div>
+              </div>
+              <p class="project-desc">
+                Engineered an autonomous mobile robot utilizing closed-loop discrete PID control ($\text{Turn} = k_P e + k_I \sum e + k_D \Delta e$) driven by an Arduino Mega and dual DC motor shield. Personally led the schematic capture, symbol creation, and physical trace routing in KiCad for a custom 7-channel optoelectronic sensor PCB ($A8\text{–}A14$) with integrated LED emitter biasing and calibrated dynamic range ($0\text{–}100$). Designed a custom 3D CAD chassis and optical shroud ensuring a rigid $0.5\text{ cm}$ ground clearance to suppress ambient light noise. Implemented an isolated dual-rail power topology to decouple high inductive motor peak currents and prevent microcontroller brownout resets. Built an analog user interface featuring four potentiometer voltage dividers paired with a 7-segment digital display for live gain tuning and telemetry verification ($S=12, P=22, I=0, D=12$).
+              </p>
+              <div class="project-specs">
+                <b>Verified Hardware Specs:</b> 7-Channel Optoelectronic Array | $0.5\text{ cm}$ Optical Standoff | Isolated Dual-Rail Power | Hardware-Tunable PID Telemetry ($S=12, P=22, I=0, D=12$) | Custom KiCad PCB &amp; 3D CAD Base
+              </div>
+              <div class="tags">
+                <span>KiCad PCB Layout</span>
+                <span>Schematic Capture</span>
+                <span>3D CAD Design</span>
+                <span>PID Control</span>
+                <span>Optoelectronics</span>
+                <span>Power Isolation</span>
+                <span>Hardware Bring-Up</span>
+              </div>
             </div>
-          </div>
-          <p class="project-desc">
-            Executed full schematic capture and physical trace routing for a mixed-signal printed circuit board adhering to standard PCB design rules and fabrication constraints. Populated circuit boards using precision through-hole and surface-mount (SMD) soldering techniques, validating board-level signal integrity, power distribution, and functional timing with bench oscilloscopes, multimeters, and function generators.
-          </p>
-          <div class="project-specs">
-            <b>Scope:</b> Schematic Capture &amp; Layout | SMD / Through-Hole Assembly | Board Bring-Up &amp; Signal Integrity Validation
-          </div>
-          <div class="tags">
-            <span>PCB Layout</span>
-            <span>Schematic Capture</span>
-            <span>SMD Soldering</span>
-            <span>Hardware Bring-Up</span>
+
+            <!-- Media Column -->
+            <div class="media-gallery-boost">
+              <figure class="media-thumb full-width">
+                <img src="images/EE201/Overall_Robot.png" alt="Assembled Closed-Loop PID Line-Following Robot" loading="lazy">
+                <figcaption>Assembled Autonomous PID Robot</figcaption>
+              </figure>
+              <div class="scope-pair">
+                <figure class="media-thumb">
+                  <img src="images/EE201/Cad_file.png" alt="Custom 3D CAD Robot Chassis Model" loading="lazy">
+                  <figcaption>3D CAD Chassis Model</figcaption>
+                </figure>
+                <figure class="media-thumb">
+                  <img src="images/EE201/image3.png" alt="KiCad 2-Layer Sensor Array PCB Routing Layout" loading="lazy">
+                  <figcaption>KiCad Sensor PCB Layout</figcaption>
+                </figure>
+              </div>
+              <div class="scope-pair">
+                <figure class="media-thumb">
+                  <img src="images/EE201/Kicad_schematic.jpg" alt="Optoelectronic Sensor Array Schematic in KiCad" loading="lazy">
+                  <figcaption>Sensor Array Schematic</figcaption>
+                </figure>
+                <figure class="media-thumb">
+                  <img src="images/EE201/Soldered_board.png" alt="Populated and Soldered Sensor Array Hardware" loading="lazy">
+                  <figcaption>Soldered Sensor Array</figcaption>
+                </figure>
+              </div>
+            </div>
           </div>
         </div>
 
