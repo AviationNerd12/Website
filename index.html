@@ -1,548 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kai Frazier — Electrical Engineering Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-<!-- MathJax Script for LaTeX Equations -->
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']]
-    },
-    svg: { fontCache: 'global' }
-  };
-</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<style>
-  :root {
-    --bg: #ffffff;
-    --bg-subtle: #f8fafc;
-    --bg-card: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --text-light: #64748b;
-    --border: #e2e8f0;
-    --border-focus: #cbd5e1;
-    --accent: #1d4ed8;
-    --accent-hover: #1e40af;
-    --accent-light: #eff6ff;
-    --tag-bg: #f1f5f9;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-
-  html { scroll-behavior: smooth; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: var(--sans);
-    color: var(--text-main);
-    background-color: var(--bg);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
-
-  /* Navigation */
-  header {
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    z-index: 100;
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-  }
-
-  .brand {
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--text-main);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-  }
-
-  .brand span {
-    color: var(--text-light);
-    font-weight: 400;
-    font-size: 14px;
-    margin-left: 8px;
-  }
-
-  nav ul { list-style: none; display: flex; gap: 20px; align-items: center; }
-  nav a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.15s ease;
-  }
-  nav a:hover { color: var(--accent); }
-  nav a.resume-btn {
-    background: var(--tag-bg);
-    padding: 6px 12px;
-    border-radius: 4px;
-    color: var(--text-main);
-    font-weight: 600;
-    border: 1px solid var(--border);
-  }
-  nav a.resume-btn:hover {
-    background: var(--accent-light);
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
-  /* Hero Section */
-  .hero {
-    padding: 64px 0 48px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .hero h1 {
-    font-size: clamp(26px, 4vw, 34px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-main);
-    margin-bottom: 12px;
-    line-height: 1.25;
-  }
-
-  .hero p {
-    font-size: 16px;
-    color: var(--text-muted);
-    max-width: 740px;
-    line-height: 1.65;
-  }
-
-  .hero-links {
-    margin-top: 20px;
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .hero-links a {
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--accent);
-  }
-  .hero-links a:hover { text-decoration: underline; }
-
-  /* Skills Grid */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-top: 28px;
-  }
-
-  @media (max-width: 768px) {
-    .skills-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .skills-grid { grid-template-columns: 1fr; }
-  }
-
-  .skill-group {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 16px;
-  }
-
-  .skill-group h3 {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-light);
-    font-weight: 700;
-    margin-bottom: 10px;
-    font-family: var(--mono);
-  }
-
-  .skill-group ul {
-    list-style: none;
-    font-size: 13.5px;
-    color: var(--text-muted);
-  }
-
-  .skill-group li { margin-bottom: 5px; }
-
-  /* Sections */
-  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
-  .section-header { margin-bottom: 28px; }
-  .section-header h2 {
-    font-size: clamp(19px, 3vw, 22px);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--text-main);
-  }
-  .section-header p {
-    font-size: 14px;
-    color: var(--text-light);
-    margin-top: 4px;
-  }
-
-  /* Projects List */
-  .projects-list { display: flex; flex-direction: column; gap: 24px; }
-
-  .project-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px;
-    transition: border-color 0.15s ease;
-  }
-
-  .project-card:hover { border-color: var(--border-focus); }
-
-  .project-layout {
-    display: grid;
-    grid-template-columns: 1.25fr 1fr;
-    gap: 24px;
-    align-items: start;
-  }
-
-  @media (max-width: 820px) {
-    .project-layout { grid-template-columns: 1fr; }
-  }
-
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .card-title {
-    font-size: clamp(16px, 2.5vw, 17.5px);
-    font-weight: 600;
-    color: var(--text-main);
-  }
-
-  .tag-group {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .status-tag {
-    font-size: 11px;
-    font-family: var(--mono);
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-  }
-
-  .status-tag.ongoing { background: #e0f2fe; color: #0369a1; }
-  .status-tag.completed { background: #f1f5f9; color: #475569; }
-
-  .team-tag {
-    font-size: 11px;
-    font-family: var(--mono);
-    font-weight: 500;
-    padding: 2px 8px;
-    border-radius: 4px;
-    background: #f8fafc;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-    letter-spacing: 0.02em;
-    flex-shrink: 0;
-  }
-
-  .project-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
-
-  .project-specs {
-    font-size: 13px;
-    background: var(--bg-subtle);
-    border-left: 3px solid var(--border-focus);
-    padding: 8px 12px;
-    margin-bottom: 12px;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tags span {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    background: var(--tag-bg);
-    color: var(--text-muted);
-    padding: 3px 8px;
-    border-radius: 4px;
-  }
-
-  /* Image Galleries & Thumbnails */
-  .media-thumb {
-    margin: 0;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-    background: #ffffff;
-    cursor: zoom-in;
-  }
-
-  .media-thumb img {
-    width: 100%;
-    display: block;
-    background-color: #ffffff;
-    transition: transform 0.2s ease;
-  }
-
-  .media-thumb:hover img { transform: scale(1.03); }
-
-  .media-thumb figcaption {
-    font-size: 11px;
-    font-family: var(--mono);
-    color: var(--text-muted);
-    padding: 5px 6px;
-    text-align: center;
-    background: #ffffff;
-    border-top: 1px solid var(--border);
-    line-height: 1.3;
-  }
-
-  /* Audio Project Layout (3-Image Row) */
-  .media-gallery-audio {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    align-items: stretch;
-  }
-
-  .media-gallery-audio .media-thumb {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .media-gallery-audio .media-thumb img {
-    height: 140px;
-    object-fit: contain;
-    padding: 4px;
-  }
-
-  /* Boost Project 3-Image Stack */
-  .media-gallery-boost {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .media-gallery-boost .full-width img {
-    height: 105px;
-    object-fit: contain;
-  }
-
-  .scope-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .scope-pair img {
-    height: 95px;
-    object-fit: cover;
-  }
-
-  /* Lightbox Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    background-color: rgba(15, 23, 42, 0.88);
-    backdrop-filter: blur(4px);
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 24px;
-  }
-
-  .modal.active { display: flex; }
-
-  .modal-content {
-    max-width: 90vw;
-    max-height: 80vh;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    background: #ffffff;
-  }
-
-  .modal-caption {
-    color: #f8fafc;
-    font-family: var(--mono);
-    font-size: 13px;
-    margin-top: 14px;
-    text-align: center;
-    max-width: 800px;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 20px;
-    right: 28px;
-    color: #ffffff;
-    font-size: 32px;
-    font-weight: 700;
-    cursor: pointer;
-    line-height: 1;
-    user-select: none;
-  }
-
-  .modal-close:hover { color: #94a3b8; }
-
-  /* Labs Grid */
-  .labs-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  @media (max-width: 768px) {
-    .labs-grid { grid-template-columns: 1fr; }
-  }
-
-  .lab-card {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 20px;
-    background: var(--bg-card);
-  }
-
-  .lab-code-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-  }
-
-  .lab-code {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  .lab-title {
-    font-size: clamp(14.5px, 2.2vw, 15.5px);
-    font-weight: 600;
-    color: var(--text-main);
-    margin-bottom: 8px;
-  }
-
-  .lab-card p {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-bottom: 12px;
-  }
-
-  .lab-details {
-    list-style: none;
-    font-size: 12.5px;
-    color: var(--text-muted);
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-  }
-
-  .lab-details li {
-    margin-bottom: 5px;
-    position: relative;
-    padding-left: 12px;
-    line-height: 1.5;
-  }
-
-  .lab-details li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--text-light);
-  }
-
-  /* Contact Section */
-  .contact-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-
-  .contact-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 14px;
-  }
-
-  .contact-list li {
-    display: flex;
-    gap: 8px;
-    align-items: baseline;
-    flex-wrap: wrap;
-  }
-
-  .contact-list .label {
-    color: var(--text-muted);
-    font-size: 13px;
-    font-weight: 600;
-    min-width: 145px;
-  }
-
-  .contact-list a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .contact-list a:hover { text-decoration: underline; }
-
-  footer {
-    padding: 32px 0;
-    font-size: 13px;
-    color: var(--text-light);
-  }
-
-  @media (max-width: 600px) {
-    .wrap { padding: 0 16px; }
-    .project-card { padding: 18px 16px; }
-    .lab-card { padding: 16px; }
-    .media-gallery-audio { grid-template-columns: 1fr; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kai Frazier — Electrical Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-subtle: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --accent: #1d4ed8;
+      --accent-hover: #1e40af;
+      --accent-light: #eff6ff;
+      --tag-bg: #f1f5f9;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text-main);
+      background-color: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    header {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .brand span {
+      color: var(--text-light);
+      font-weight: 400;
+      font-size: 14px;
+      margin-left: 8px;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 20px; align-items: center; }
+    nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    nav a:hover { color: var(--accent); }
+    nav a.resume-btn {
+      background: var(--tag-bg);
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: var(--text-main);
+      font-weight: 600;
+      border: 1px solid var(--border);
+    }
+    nav a.resume-btn:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 740px;
+      line-height: 1.65;
+    }
+
+    .hero-links {
+      margin-top: 20px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-links a {
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--accent);
+    }
+    .hero-links a:hover { text-decoration: underline; }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    .skill-group {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+
+    .skill-group h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-family: var(--mono);
+    }
+
+    .skill-group ul {
+      list-style: none;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    .skill-group li { margin-bottom: 5px; }
+
+    /* Sections */
+    section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    .section-header { margin-bottom: 28px; }
+    .section-header h2 {
+      font-size: clamp(19px, 3vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+    .section-header p {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    /* Projects List */
+    .projects-list { display: flex; flex-direction: column; gap: 24px; }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 0.15s ease;
+    }
+    .project-card:hover { border-color: var(--border-focus); }
+    .project-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .project-layout { grid-template-columns: 1fr; }
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: clamp(16px, 2.5vw, 17.5px);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .tag-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .status-tag {
+      font-size: 11px;
+      font-family: var(--mono);
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .status-tag.ongoing { background: #e0f2fe; color: #0369a1; }
+    .status-tag.completed { background: #f1f5f9; color: #475569; }
+
+    .team-tag {
+      font-size: 11px;
+      font-family: var(--mono);
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #f8fafc;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .project-specs {
+      font-size: 13px;
+      background: var(--bg-subtle);
+      border-left: 3px solid var(--border-focus);
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tags span {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      background: var(--tag-bg);
+      color: var(--text-muted);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* Image Galleries & Thumbnails */
+    .media-thumb {
+      margin: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #ffffff;
+      cursor: zoom-in;
+    }
+
+    .media-thumb img {
+      width: 100%;
+      display: block;
+      background-color: #ffffff;
+      transition: transform 0.2s ease;
+    }
+    .media-thumb:hover img { transform: scale(1.03); }
+
+    .media-thumb figcaption {
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      padding: 5px 6px;
+      text-align: center;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      line-height: 1.3;
+    }
+
+    /* Audio Project Layout (3-Image Row) */
+    .media-gallery-audio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      align-items: stretch;
+    }
+    .media-gallery-audio .media-thumb {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .media-gallery-audio .media-thumb img {
+      height: 140px;
+      object-fit: contain;
+      padding: 4px;
+    }
+
+    /* Boost Project & Robot 3-Image Stack */
+    .media-gallery-boost {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .media-gallery-boost .full-width img {
+      height: 105px;
+      object-fit: contain;
+    }
+    .scope-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .scope-pair img {
+      height: 95px;
+      object-fit: cover;
+    }
+
+    /* Lightbox Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      background-color: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .modal.active { display: flex; }
+
+    .modal-content {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      background: #ffffff;
+    }
+
+    .modal-caption {
+      color: #f8fafc;
+      font-family: var(--mono);
+      font-size: 13px;
+      margin-top: 14px;
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: 700;
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+    }
+    .modal-close:hover { color: #94a3b8; }
+
+    /* Contact Section */
+    .contact-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .contact-list li {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .contact-list .label {
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      min-width: 145px;
+    }
+
+    .contact-list a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-list a:hover { text-decoration: underline; }
+
+    footer {
+      padding: 32px 0;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 0 16px; }
+      .project-card { padding: 18px 16px; }
+      .media-gallery-audio { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <header>
     <div class="wrap nav-inner">
       <a href="#" class="brand">Kai Frazier <span>UW ECE</span></a>
@@ -550,7 +465,6 @@
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#labs">Lab Work</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="images/resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-btn">Resume (PDF)</a></li>
         </ul>
@@ -558,18 +472,16 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
   <div class="hero" id="about">
     <div class="wrap">
       <h1>Electrical &amp; Computer Engineering</h1>
       <p>B.S. Electrical &amp; Computer Engineering student at the <b>University of Washington</b> (Expected March 2028), focusing on RF circuit design, power electronics, analog signal conditioning, and scientific computation. Experienced in electromagnetic simulation, SPICE modeling, and benchtop hardware testing.</p>
       <div class="hero-links">
         <a href="#projects">View Projects &rarr;</a>
-        <a href="#labs">Lab &amp; Measurement Reports &rarr;</a>
+        <a href="#contact">Contact &rarr;</a>
         <a href="images/resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume (PDF) &rarr;</a>
       </div>
 
-      <!-- Technical Competencies -->
       <div class="skills-grid">
         <div class="skill-group">
           <h3>RF &amp; Electromagnetics</h3>
@@ -594,10 +506,10 @@
         <div class="skill-group">
           <h3>Software &amp; Tools</h3>
           <ul>
-            <li>Fortran 90/95</li>
             <li>Python (NumPy / SciPy)</li>
             <li>LTspice (.tran / .ac / .dc)</li>
             <li>SMath Studio</li>
+            <li>KiCad EDA</li>
             <li>Git &amp; GitHub Version Control</li>
           </ul>
         </div>
@@ -615,17 +527,15 @@
     </div>
   </div>
 
-  <!-- Projects Section -->
   <section id="projects">
     <div class="wrap">
       <div class="section-header">
         <h2>Engineering Projects</h2>
-        <p>Microstrip RF syntheses, power converter hardware, PCB prototypes, and computational tools.</p>
+        <p>Microstrip RF syntheses, power converter hardware, PCB prototypes, and closed-loop control systems.</p>
       </div>
 
       <div class="projects-list">
 
-        <!-- Project 1: Hairpin Bandpass Filter (Solo) -->
         <div class="project-card">
           <div class="card-top">
             <h3 class="card-title">1090 MHz 4th-Order Chebyshev Microstrip Hairpin Filter</h3>
@@ -643,12 +553,10 @@
             <span>Ansys HFSS</span>
             <span>Microstrip Synthesis</span>
             <span>S-Parameters</span>
-            <span>Fortran</span>
             <span>SMath Studio</span>
           </div>
         </div>
 
-        <!-- Project 2: AC-DC Boost Converter (Team) -->
         <div class="project-card">
           <div class="project-layout">
             <div>
@@ -673,7 +581,6 @@
               </div>
             </div>
 
-            <!-- 3-Image Media Column -->
             <div class="media-gallery-boost">
               <figure class="media-thumb full-width">
                 <img src="images/boost-schematic.png" alt="Complete AC-DC Boost Converter Circuit Schematic" loading="lazy">
@@ -693,7 +600,6 @@
           </div>
         </div>
 
-        <!-- Project 3: Audio Mixer & Equalizer (Team) -->
         <div class="project-card">
           <div class="project-layout">
             <div>
@@ -718,7 +624,6 @@
               </div>
             </div>
 
-            <!-- 3-Image Media Column -->
             <div class="media-gallery-audio">
               <figure class="media-thumb">
                 <img src="images/audio-schematic.png" alt="Active Variable Band-Pass / Band-Stop Filter Schematic" loading="lazy">
@@ -736,7 +641,6 @@
           </div>
         </div>
 
-        <!-- Project 4: PID Line-Following Robot & Mixed-Signal PCB (EE 201) -->
         <div class="project-card">
           <div class="project-layout">
             <div>
@@ -764,29 +668,18 @@
               </div>
             </div>
 
-            <!-- Media Column -->
             <div class="media-gallery-boost">
               <figure class="media-thumb full-width">
-                <img src="images/EE201/Overall_Robot.png" alt="Assembled Closed-Loop PID Line-Following Robot" loading="lazy">
+                <img src="images/Overall_Robot.png" alt="Assembled Closed-Loop PID Line-Following Robot" loading="lazy">
                 <figcaption>Assembled Autonomous PID Robot</figcaption>
               </figure>
               <div class="scope-pair">
                 <figure class="media-thumb">
-                  <img src="images/EE201/Cad_file.png" alt="Custom 3D CAD Robot Chassis Model" loading="lazy">
-                  <figcaption>3D CAD Chassis Model</figcaption>
-                </figure>
-                <figure class="media-thumb">
-                  <img src="images/EE201/image3.png" alt="KiCad 2-Layer Sensor Array PCB Routing Layout" loading="lazy">
-                  <figcaption>KiCad Sensor PCB Layout</figcaption>
-                </figure>
-              </div>
-              <div class="scope-pair">
-                <figure class="media-thumb">
-                  <img src="images/EE201/Kicad_schematic.jpg" alt="Optoelectronic Sensor Array Schematic in KiCad" loading="lazy">
+                  <img src="images/Kicad_schematic.jpg" alt="Optoelectronic Sensor Array Schematic in KiCad" loading="lazy">
                   <figcaption>Sensor Array Schematic</figcaption>
                 </figure>
                 <figure class="media-thumb">
-                  <img src="images/EE201/Soldered_board.png" alt="Populated and Soldered Sensor Array Hardware" loading="lazy">
+                  <img src="images/Soldered_board.png" alt="Populated and Soldered Sensor Array Hardware" loading="lazy">
                   <figcaption>Soldered Sensor Array</figcaption>
                 </figure>
               </div>
@@ -794,113 +687,10 @@
           </div>
         </div>
 
-        <!-- Project 5: Scientific Numerical Computation Engine (Team) -->
-        <div class="project-card">
-          <div class="card-top">
-            <h3 class="card-title">Fortran &amp; SMath Numerical Computation Pipelines</h3>
-            <div class="tag-group">
-              <span class="team-tag">3-Person Team</span>
-              <span class="status-tag ongoing">Ongoing</span>
-            </div>
-          </div>
-          <p class="project-desc">
-            Developed compiled Fortran 90/95 routines and SMath symbolic worksheets to execute matrix transformations, Chebyshev prototype polynomial evaluations, and microstrip impedance transformations. Automated analytical solving of electrical lengths ($\lambda_g / 4$), odd/even characteristic impedances ($Z_{0e}, Z_{0o}$), and physical microstrip line dimensions ($W/H, S/H$).
-          </p>
-          <div class="tags">
-            <span>Fortran 90/95</span>
-            <span>SMath Studio</span>
-            <span>Numerical Math</span>
-            <span>Algorithm Design</span>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- Laboratory Reports Section -->
-  <section id="labs">
-    <div class="wrap">
-      <div class="section-header">
-        <h2>Laboratory Reports &amp; Experimental Studies</h2>
-        <p>Experimental validation, bench measurement protocols, and hardware characterization.</p>
-      </div>
-
-      <div class="labs-grid">
-
-        <!-- Lab 1: EE 331 Semiconductor Physics & Non-Linear Waveshaping (Team) -->
-        <div class="lab-card">
-          <div class="lab-code-row">
-            <span class="lab-code">UW EE 331</span>
-            <span class="team-tag">3-Person Team</span>
-          </div>
-          <h3 class="lab-title">Semiconductor Physics &amp; Non-Linear Wave-Shaping</h3>
-          <p>
-            Characterized forward conduction and minority-carrier reverse leakage across silicon rectifiers (1N4007), fast-switching diodes (1N4148), and Schottky diodes (1N5819) over five decades of current ($1\ \mu\text{A}$ to $10\text{ mA}$). Extracted ideality factors ($\eta$) and mapped dynamic Voltage Transfer Characteristics (VTC) in oscilloscope X-Y mode.
-          </p>
-          <ul class="lab-details">
-            <li><b>Biased Peak Clippers:</b> Implemented 4-quadrant diode clipping networks adjusting positive/negative slicing thresholds via DC reference bias ($V_{BB}$).</li>
-            <li><b>Overvoltage Limiters:</b> Built symmetric ($\pm 0.7\text{ V}$, $\pm 1.4\text{ V}$), asymmetric Zener ($-0.7\text{ V}$ to $+4.7\text{ V}$), and custom $-9.4\text{ V}$ to $+2.0\text{ V}$ multi-stage protection limiters.</li>
-            <li><b>SPICE Extraction:</b> Modeled dynamic breakdown resistance ($R_z = \Delta V_Z / \Delta I_Z$) and forward dynamic resistance ($R_f$) in LTspice.</li>
-          </ul>
-        </div>
-
-        <!-- Lab 2: EE 331 Rectification & Regulation (Team) -->
-        <div class="lab-card">
-          <div class="lab-code-row">
-            <span class="lab-code">UW EE 331</span>
-            <span class="team-tag">3-Person Team</span>
-          </div>
-          <h3 class="lab-title">AC-DC Rectification, Smoothing &amp; Zener Regulation</h3>
-          <p>
-            Evaluated half-wave and full-wave bridge rectifier circuits driven by $10\text{ V}_{\text{peak}}$ AC transformer inputs. Quantified exponential filter discharge dynamics ($V(t) = (V_p - V_{\text{on}})e^{-t/RC}$) and ripple doubling effects ($2f_{\text{in}} = 120\text{ Hz}$).
-          </p>
-          <ul class="lab-details">
-            <li><b>Ripple Optimization:</b> Measured fundamental ripple frequency doubling, reducing capacitor discharge interval by $\approx 50\%$ relative to half-wave rectification.</li>
-            <li><b>Shunt Zener Regulator:</b> Characterized line and load regulation figures of merit ($\text{mV/mA}$, $\text{mV/V}$) with a 1N4732 ($4.7\text{ V}$) stage across variable loads ($470\ \Omega$ to $10\text{ k}\Omega$).</li>
-            <li><b>Dropout Modeling:</b> Evaluated regulator collapse thresholds where heavy load currents pull reverse Zener currents below knee current ($I_Z < I_{ZK}$).</li>
-          </ul>
-        </div>
-
-        <!-- Lab 3: ECE 233 Transient & Op-Amp Dynamics (Team) -->
-        <div class="lab-card">
-          <div class="lab-code-row">
-            <span class="lab-code">UW ECE 233</span>
-            <span class="team-tag">3-Person Team</span>
-          </div>
-          <h3 class="lab-title">Transient RC Response, Slew Rates &amp; Active Integrators</h3>
-          <p>
-            Measured transient step responses of first-order RC networks on digital storage oscilloscopes, validating rise time ($t_r \approx 2.197RC$) and propagation delay ($t_{pd} \approx 0.693RC$) against theoretical derivations.
-          </p>
-          <ul class="lab-details">
-            <li><b>Slew Rate Limits:</b> Measured large-signal rate-of-change boundaries ($SR = |dV_{\text{out}}/dt|_{\max}$) across $-10\text{ V}$ to $+10\text{ V}$ step transitions to prevent triangular distortion.</li>
-            <li><b>Active Integrators &amp; Differentiators:</b> Built shunt-stabilized integrators ($R_2 \parallel C_f$) eliminating open-loop DC offset rail saturation ($\pm 12\text{ V}$).</li>
-            <li><b>Active Summing Bus:</b> Implemented 3-channel inverting summing bus with parallel feedback low-pass filtering and channel attenuation potentiometers.</li>
-          </ul>
-        </div>
-
-        <!-- Lab 4: ECE 241 DSP, Computer Vision & Graph Connectomics (Team) -->
-        <div class="lab-card">
-          <div class="lab-code-row">
-            <span class="lab-code">UW ECE 241</span>
-            <span class="team-tag">3-Person Team</span>
-          </div>
-          <h3 class="lab-title">Vectorized DSP, Image Transformations &amp; Connectomics</h3>
-          <p>
-            Implemented scientific computing pipelines in Python, NumPy, SciPy, and Matplotlib for digital audio synthesis, image transformations, and biological graph modeling.
-          </p>
-          <ul class="lab-details">
-            <li><b>Audio Synthesis:</b> Synthesized 16-bit PCM equal-temperament scale frequencies and polyphonic multi-tone chords ($A+C\#$, $B+D$, etc.).</li>
-            <li><b>Image Processing:</b> Implemented segment block-averaging downsampling, luminance threshold masks, alpha image blending, and 2D Gaussian surface modeling ($vis\_2d\_gaussian$).</li>
-            <li><b>Neural Connectomics &amp; Data:</b> Parsed the 279-neuron <i>C. elegans</i> synaptic connectome matrix to simulate interneuron path repairs, and built moving-window causal filters for time series.</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
   <section id="contact" style="border-bottom: none;">
     <div class="wrap contact-section">
       <div>
@@ -927,21 +717,18 @@
     </div>
   </section>
 
-  <!-- Lightbox Modal Container -->
   <div id="image-modal" class="modal" role="dialog" aria-label="Image Preview">
     <span class="modal-close">&times;</span>
     <img class="modal-content" id="modal-img" alt="Enlarged technical plot">
     <div id="modal-caption" class="modal-caption"></div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <div class="wrap">
       <span>&copy; 2026 Kai Frazier.</span>
     </div>
   </footer>
 
-  <!-- Lightbox Interaction Script -->
   <script>
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-img');
