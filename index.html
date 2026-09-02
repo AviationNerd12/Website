@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -339,7 +339,7 @@
       padding: 4px;
     }
 
-    /* Boost Project & Robot 3-Image Stack */
+    /* Boost Project Stack */
     .media-gallery-boost {
       display: flex;
       flex-direction: column;
@@ -357,6 +357,23 @@
     .scope-pair img {
       height: 95px;
       object-fit: cover;
+    }
+
+    /* Robot Project 2x2 Grid */
+    .media-gallery-robot {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .media-gallery-robot .media-thumb {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .media-gallery-robot .media-thumb img {
+      height: 105px;
+      object-fit: contain;
+      padding: 4px;
     }
 
     /* Lightbox Modal */
@@ -453,6 +470,9 @@
       .wrap { padding: 0 16px; }
       .project-card { padding: 18px 16px; }
       .media-gallery-audio { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 440px) {
+      .media-gallery-robot { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -668,21 +688,23 @@
               </div>
             </div>
 
-            <div class="media-gallery-boost">
-              <figure class="media-thumb full-width">
+            <div class="media-gallery-robot">
+              <figure class="media-thumb">
                 <img src="images/Overall_Robot.png" alt="Assembled Closed-Loop PID Line-Following Robot" loading="lazy">
-                <figcaption>Assembled Autonomous PID Robot</figcaption>
+                <figcaption>Assembled Autonomous Robot</figcaption>
               </figure>
-              <div class="scope-pair">
-                <figure class="media-thumb">
-                  <img src="images/Kicad_schematic.jpg" alt="Optoelectronic Sensor Array Schematic in KiCad" loading="lazy">
-                  <figcaption>Sensor Array Schematic</figcaption>
-                </figure>
-                <figure class="media-thumb">
-                  <img src="images/Soldered_board.png" alt="Populated and Soldered Sensor Array Hardware" loading="lazy">
-                  <figcaption>Soldered Sensor Array</figcaption>
-                </figure>
-              </div>
+              <figure class="media-thumb">
+                <img src="images/Cad_file.png" alt="3D CAD Optical Shroud &amp; Chassis Mount" loading="lazy">
+                <figcaption>3D CAD Optical Shroud</figcaption>
+              </figure>
+              <figure class="media-thumb">
+                <img src="images/Kicad_schematic.jpg" alt="Optoelectronic Sensor Array PCB Routing in KiCad" loading="lazy">
+                <figcaption>KiCad Sensor PCB Layout</figcaption>
+              </figure>
+              <figure class="media-thumb">
+                <img src="images/Soldered_board.png" alt="Populated and Soldered Sensor Array Hardware" loading="lazy">
+                <figcaption>Soldered Sensor Array</figcaption>
+              </figure>
             </div>
           </div>
         </div>
