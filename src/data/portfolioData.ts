@@ -77,19 +77,19 @@ export const PROJECTS: ProjectItem[] = [
     mediaLayout: 'boost-stack',
     media: [
       {
-        src: '/images/boost-schematic.png',
+        src: './images/boost-schematic.png',
         alt: 'Complete AC-DC Boost Converter Circuit Schematic',
         caption: 'Circuit Schematic',
         type: 'schematic',
       },
       {
-        src: '/images/boost-scope-low.png',
+        src: './images/boost-scope-low.png',
         alt: 'Keysight DSO 9.25V Output Capture',
         caption: 'Low: 9.25V (65 mV Rip.)',
         type: 'scope',
       },
       {
-        src: '/images/boost-scope-high.png',
+        src: './images/boost-scope-high.png',
         alt: 'Keysight DSO 18.65V Output Capture',
         caption: 'High: 18.65V (72 mV Rip.)',
         type: 'scope',
@@ -111,19 +111,19 @@ export const PROJECTS: ProjectItem[] = [
     mediaLayout: 'audio-3col',
     media: [
       {
-        src: '/images/audio-schematic.png',
+        src: './images/audio-schematic.png',
         alt: 'Active Variable Band-Pass / Band-Stop Filter Schematic',
         caption: 'Active Filter Topology',
         type: 'schematic',
       },
       {
-        src: '/images/audio-waveform.png',
+        src: './images/audio-waveform.png',
         alt: 'Keysight DSO Dual-Channel Input vs Output Waveform',
         caption: 'Input vs. Filtered Output',
         type: 'scope',
       },
       {
-        src: '/images/audio-bode-mixer-gain.png',
+        src: './images/audio-bode-mixer-gain.png',
         alt: 'Measured Bode Plot — Full Mixer Gain Response',
         caption: 'Measured Bode Plot — Full Mixer Gain (2 Pass-Bands + Stop-Band)',
         type: 'bode',
@@ -153,25 +153,25 @@ export const PROJECTS: ProjectItem[] = [
     mediaLayout: 'robot-2x2',
     media: [
       {
-        src: '/images/Overall_Robot.png',
+        src: './images/Overall_Robot.png',
         alt: 'Assembled Closed-Loop PID Line-Following Robot',
         caption: 'Assembled Autonomous Robot',
         type: 'hardware',
       },
       {
-        src: '/images/Cad_file.png',
+        src: './images/Cad_file.png',
         alt: '3D CAD Optical Shroud & Chassis Mount',
         caption: '3D CAD Optical Shroud',
         type: 'cad',
       },
       {
-        src: '/images/Kicad_schematic.jpg',
+        src: './images/Kicad_schematic.jpg',
         alt: 'Optoelectronic Sensor Array PCB Routing in KiCad',
         caption: 'KiCad Sensor PCB Layout',
         type: 'schematic',
       },
       {
-        src: '/images/Soldered_board.png',
+        src: './images/Soldered_board.png',
         alt: 'Populated and Soldered Sensor Array Hardware',
         caption: 'Soldered Sensor Array',
         type: 'hardware',

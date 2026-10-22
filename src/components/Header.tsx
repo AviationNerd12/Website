@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
         {/* Zone 3: Primary Action CTA */}
         <div className="flex items-center gap-3 shrink-0">
           <a
-            href="/images/resume.pdf"
+            href="./images/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-mono font-semibold bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-300 border border-cyan-500/40 hover:border-cyan-400 transition-all shadow-sm hover:shadow-cyan-500/20 whitespace-nowrap shrink-0"

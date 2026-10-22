@@ -78,7 +78,7 @@ export const Contact: React.FC = () => {
                   Curriculum Vitae
                 </span>
                 <a
-                  href="/images/resume.pdf"
+                  href="./images/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-slate-300 hover:text-cyan-300 transition-colors font-medium"

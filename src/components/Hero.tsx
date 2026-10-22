@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
                 </a>
 
                 <a
-                  href="/images/resume.pdf"
+                  href="./images/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-cyan-900/60 hover:border-cyan-500/60 font-mono text-xs transition-all shadow-sm"
@@ -175,7 +175,7 @@ export const Hero: React.FC = () => {
 
             <div className="pt-4 mt-4 border-t border-slate-800/80">
               <a
-                href="/images/resume.pdf"
+                href="./images/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-cyan-950/70 hover:bg-cyan-900/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono font-semibold transition-colors"
