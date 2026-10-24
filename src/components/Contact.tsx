@@ -62,13 +62,13 @@ export const Contact: React.FC = () => {
                   Version Control
                 </span>
                 <a
-                  href="https://github.com/kai-frazier"
+                  href="https://github.com/AviationNerd12"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-slate-300 hover:text-cyan-300 transition-colors font-medium"
                 >
                   <Github className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                  <span>github.com/kai-frazier</span>
+                  <span>github.com/AviationNerd12</span>
                 </a>
               </div>
 

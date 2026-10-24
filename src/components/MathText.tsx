@@ -34,7 +34,7 @@ export const MathText: React.FC<MathTextProps> = ({ text, className = '' }) => {
           return (
             <span
               key={index}
-              className="inline-block px-0.5 text-cyan-300 font-mono"
+              className="inline text-cyan-300 font-mono"
               dangerouslySetInnerHTML={{ __html: html }}
             />
           );
