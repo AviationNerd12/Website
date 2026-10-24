@@ -53,7 +53,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onMediaClick,
           {/* Specifications Callout Box */}
           <div className="bg-[#080d19] border-l-2 border-cyan-500/80 border-y border-r border-cyan-950/50 rounded-r-lg p-3 sm:p-3.5 mb-4 text-xs font-mono text-slate-300 leading-relaxed">
             <span className="text-cyan-400 font-semibold uppercase tracking-wider block mb-1">
-              [ VERIFIED HARDWARE &amp; BENCH DATA ]
+              {project.status === 'ongoing'
+                ? '[ DESIGN SPECIFICATIONS ]'
+                : '[ VERIFIED HARDWARE & BENCH DATA ]'}
             </span>
             <MathText text={project.specs} />
           </div>
